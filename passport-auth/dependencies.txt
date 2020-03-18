@@ -1,0 +1,3 @@
+npm install -g nodemon express
+npm i bcrypt passport passport-local express-session express-flash
+npm i method-override
