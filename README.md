@@ -14,8 +14,7 @@ Public Safety with LoRa WAN and Real-time CCTV Video Streams
 [![GitHub stars](https://img.shields.io/github/stars/adithyaanilkumar/SafeNet.svg?style=social&label=Star&maxAge=2592000)](https://github.com/adithyaanilkumar/SafeNet)
 [![GitHub watchers](https://img.shields.io/github/watchers/adithyaanilkumar/SafeNet.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/kaiiyer/adithyaanilkumar/SafeNet)
 
-## Installation
-# Tech Stack
+## Tech Stack
 - Deep Multiple Instance Learning 
 - 3D ResNets for Action Recognition
 - Node Backend
