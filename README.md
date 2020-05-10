@@ -16,7 +16,8 @@ Public Safety with LoRa WAN and Real-time CCTV Video Streams
 
 ## Installation
 # Tech Stack
-- Deep Learning (Autoencoder Neural Network) - TF Keras
+- Deep Multiple Instance Learning 
+- 3D ResNets for Action Recognition
 - Node Backend
 - React 
 - Passport Auth
