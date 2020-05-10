@@ -23,5 +23,6 @@ Public Safety with LoRa WAN and Real-time CCTV Video Streams
 - Passport Auth
 
 
-PRs are highly appreciated !!!
+PRs are highly appreciated!
+
 Read [Guidelines](/CONTRIBUTING.md) for making a PR.
