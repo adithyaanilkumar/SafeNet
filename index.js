@@ -11,7 +11,6 @@ app.listen(port, function () {
 
 
  var db
-
 MongoClient.connect('mongodb+srv://adi:adi@lori-ebbbl.mongodb.net/test?retryWrites=true&w=majority', (err, client) => {
   if (err) return console.log(err)
   db = client.db('lori') // whatever your database name is
@@ -35,5 +34,3 @@ app.get('/get', function (req, res) {
           // send HTML file populated with quotes here
         })
  });
-
- 
