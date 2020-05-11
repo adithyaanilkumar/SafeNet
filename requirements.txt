@@ -1,0 +1,8 @@
+torch>=1.5.0
+matplotlib
+numpy>=1.18.4
+cv2>=4.2.0
+pandas>=1.0.3
+smtplib
+email
+mysql
