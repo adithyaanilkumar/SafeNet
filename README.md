@@ -37,9 +37,9 @@ Join our [IRC channel](https://matrix.to/#/!nZSgcehhxBxZCNGjcH:matrix.org?via=ma
 
 - ## What is SafeNet?
 We believe in the concept that a part of human is all about helping others in
-need. Whats more important than being safe
+need. What's more important than being safe
 and not having to worry about who will be
-there for you wen you are in trouble.
+there for you when you are in trouble.
 
 SafeNet is a project which attempts to do just
 that. SafeNet focuses on public safety which
@@ -48,7 +48,7 @@ volunteers and using the this community to
 provide instant assistance to anyone in need
 of help.
 
-- ## What are the features taht SafeNet offers?
+- ## What are the features that SafeNet offers?
 
 SafeNet's basic user interface is an app which
 where in any citizen  can sign up
