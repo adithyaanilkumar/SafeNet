@@ -25,9 +25,9 @@ Public Safety with LoRa WAN and Real-time CCTV Video Streams
 
 PRs are highly appreciated!
 
-Read [Server Documentation](/server/README.md) for details regarding how to set up the project server.
+Read [Server Documentation](/server/README.md) for details regarding how to set up the project Server.
 
-Read [App Documentation](/app/safenet/README.md) for details regarding how to set up the project server.
+Read [App Documentation](/app/safenet/README.md) for details regarding how to set up the project Server.
 
 Read [Guidelines](/CONTRIBUTING.md) for making a Pull Request.
 
@@ -64,4 +64,3 @@ others in need is the main goal of this
 project.We also will also have continuous CCTV monitoring if the streets and process this live feeds using our 3d RestNet and LSTM to do anomaly detection on these live streams.
 
 Lets help each other and be safe.
-
