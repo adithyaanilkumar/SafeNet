@@ -4,10 +4,9 @@ import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/facebookSignInButton.dart';
 import 'package:safenet/ui/customWidgets/googleSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
-import 'package:safenet/ui/views/register_view.dart';
 
-class LoginView extends StatelessWidget {
-  static const String id = 'loginView';
+class RegisterView extends StatelessWidget {
+  static const String id = 'registerView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +35,17 @@ class LoginView extends StatelessWidget {
                 obscureText: true,
                 onChanged: null,
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your Password',
+                    hintText: 'Create a Password',
+                    prefixIcon: Icon(Icons.lock_outline)),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              TextField(
+                obscureText: true,
+                onChanged: null,
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Confirm your Password',
                     prefixIcon: Icon(Icons.lock_outline)),
               ),
               SizedBox(
@@ -45,39 +54,23 @@ class LoginView extends StatelessWidget {
               CustomSignInButton(
                 onPressed: null,
                 buttonColor: Color(0xff51adcf),
-                buttonText: "Sign In",
+                buttonText: "Sign Up",
               ),
               SizedBox(
                 height: 8.0,
               ),
-              FlatButton(onPressed: null, child: Text("Forgot Password?")),
-              SizedBox(
-                height: 8.0,
+              GoogleSignInButton(
+                text: "Sign up with google",
               ),
-              GoogleSignInButton(),
               SizedBox(
                 height: 15.0,
               ),
-              FacebookSignInButton(),
+              FacebookSignInButton(
+                text: "Sign up with Facebook",
+              ),
               SizedBox(
                 height: 40.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don't have an account?"),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegisterView.id);
-                    },
-                    padding: EdgeInsets.only(left: 0.0),
-                    child: Text(
-                      "Create one",
-                      style: TextStyle(color: Color(0xff51adcf)),
-                    ),
-                  )
-                ],
-              )
             ],
           ),
         ),

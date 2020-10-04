@@ -15,3 +15,6 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
   ),
 );
+
+const kSocialMediaDecoration =
+    BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10.0)));
