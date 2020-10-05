@@ -36,6 +36,7 @@ Join our [IRC channel](https://matrix.to/#/!nZSgcehhxBxZCNGjcH:matrix.org?via=ma
 # About SafeNet
 
 - ## What is SafeNet?
+
 We believe in the concept that the feeling of Humanity and a part of Humans is all about helping others in
 need. What's more important than being safe
 and not having to worry about who will be
@@ -44,11 +45,13 @@ there for you when you are in trouble.
 SafeNet is a project which attempts to do just
 that. SafeNet focuses on public safety which
 depends on creating a community of safety
+
 volunteers and using this community to
 provide instant assistance to anyone in need
 of help.
 
 - ## What are the features that SafeNet offers?
+
 
 SafeNet's basic user interface is an app
 where in any citizen can sign up
@@ -63,3 +66,4 @@ others in need, is the main goal of this
 project.We also will also have continuous CCTV monitoring of the streets and process these live feeds using our 3D RestNet and LSTM to do anomaly detection on these live streams.
 
 Let's help each other and be safe.
+
