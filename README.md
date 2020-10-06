@@ -57,13 +57,12 @@ SafeNet's basic user interface is an app
 where in any citizen can sign up
 as volunteers and they will be verified and on
 boarded to our community. 
-The users of the app, when is in danger or feels threatened can use the app to get help. This
-alerts the nearby Volunteers, the Police and Loved ones of the user. In this way
-the nearby volunteers can reach there on time
+The App Users can use the app to get help when in danger or feels threatened . The App creates
+alerts for the nearby Volunteers, the Police and Loved ones of the user. So the nearby volunteers can reach there on time
 and help the person in trouble.
-Building this community of people, who are willing to help
+Building a community of people, who are willing to help
 others in need, is the main goal of this
-project.We also will also have continuous CCTV monitoring of the streets and process these live feeds using our 3D RestNet and LSTM to do anomaly detection on these live streams.
+project. We also will also have continuous monitoring of the streets via CCTV and, other Outdoor Surviellance Systems and process these live feeds using our 3D RestNet and LSTM to do anomaly detection on these live streams.
 
 Let's help each other and be safe.
 
