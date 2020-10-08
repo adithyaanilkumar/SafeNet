@@ -6,7 +6,6 @@ import 'package:safenet/ui/customWidgets/googleSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class RegisterView extends StatelessWidget {
-  static const String id = 'registerView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

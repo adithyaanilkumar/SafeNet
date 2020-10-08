@@ -1,16 +1,14 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:safenet/core/routes.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
-import 'package:safenet/ui/views/login_view.dart';
-import 'package:safenet/ui/views/register_view.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  static const String id = 'welcome';
+class WelcomeView extends StatefulWidget {
   @override
-  _WelcomeScreenState createState() => _WelcomeScreenState();
+  _WelcomeViewState createState() => _WelcomeViewState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeViewState extends State<WelcomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               CustomSignInButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, LoginView.id);
+                  Navigator.pushNamed(context, Routes.login);
                 },
                 buttonText: "Sign In",
                 buttonColor: Color(0xff51adcf),
@@ -49,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               CustomSignInButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, RegisterView.id);
+                  Navigator.pushNamed(context, Routes.register);
                 },
                 buttonText: "Sign up",
                 buttonColor: Color(0xff51adcf),

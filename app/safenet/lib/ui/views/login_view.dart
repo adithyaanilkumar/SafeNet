@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:safenet/core/routes.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/facebookSignInButton.dart';
 import 'package:safenet/ui/customWidgets/googleSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
-import 'package:safenet/ui/views/register_view.dart';
 
 class LoginView extends StatelessWidget {
-  static const String id = 'loginView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +67,7 @@ class LoginView extends StatelessWidget {
                   Text("Don't have an account?"),
                   FlatButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, RegisterView.id);
+                      Navigator.pushNamed(context, Routes.register);
                     },
                     padding: EdgeInsets.only(left: 0.0),
                     child: Text(
