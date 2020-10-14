@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:safenet/core/routes.dart';
+import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
-import 'package:safenet/ui/customWidgets/facebookSignInButton.dart';
-import 'package:safenet/ui/customWidgets/googleSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -17,7 +18,10 @@ class LoginView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 120.0),
-              Center(child: MainTitle()),
+              Center(
+                  child: MainTitle(
+                mainTitle: Provider.of<LoginModel>(context).title,
+              )),
               SizedBox(
                 height: 80.0,
               ),
@@ -52,14 +56,6 @@ class LoginView extends StatelessWidget {
               FlatButton(onPressed: null, child: Text("Forgot Password?")),
               SizedBox(
                 height: 8.0,
-              ),
-              GoogleSignInButton(),
-              SizedBox(
-                height: 15.0,
-              ),
-              FacebookSignInButton(),
-              SizedBox(
-                height: 40.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
