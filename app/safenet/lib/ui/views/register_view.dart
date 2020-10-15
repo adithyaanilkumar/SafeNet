@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safenet/core/routes.dart';
 import 'package:safenet/core/viewmodals/register_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
@@ -34,7 +35,7 @@ class RegisterView extends StatelessWidget {
                 height: 8.0,
               ),
               CustomSignInButton(
-                onPressed: null,
+                onPressed: () => Navigator.pushNamed(context, Routes.otpEntry),
                 buttonColor: Color(0xff51adcf),
                 buttonText: "Generate OTP",
               ),
