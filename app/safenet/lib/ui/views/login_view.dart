@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:safenet/core/routes.dart';
 import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/ui/constants.dart';
@@ -20,7 +19,7 @@ class LoginView extends StatelessWidget {
               SizedBox(height: 120.0),
               Center(
                   child: MainTitle(
-                mainTitle: Provider.of<LoginModel>(context).title,
+                mainTitle: LoginModel.title,
               )),
               SizedBox(
                 height: 80.0,

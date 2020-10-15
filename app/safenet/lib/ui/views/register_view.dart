@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:safenet/core/viewmodals/register_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
@@ -19,7 +18,7 @@ class RegisterView extends StatelessWidget {
               SizedBox(height: 120.0),
               Center(
                   child: MainTitle(
-                mainTitle: Provider.of<RegisterModel>(context).title,
+                mainTitle: RegisterModel.title,
               )),
               SizedBox(
                 height: 150.0,

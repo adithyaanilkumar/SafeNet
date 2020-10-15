@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safenet/ui/constants.dart';
+import 'package:safenet/ui/customWidgets/bloodGroupDropDown.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class UserDetailsEntry extends StatelessWidget {
@@ -36,10 +37,7 @@ class UserDetailsEntry extends StatelessWidget {
               SizedBox(
                 height: 15.0,
               ),
-              TextField(
-                decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Blood Group'),
-              ),
+              BloodGroupDropDown(),
               SizedBox(
                 height: 15.0,
               ),
