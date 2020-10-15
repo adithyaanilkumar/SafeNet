@@ -29,7 +29,7 @@ class LoginView extends StatelessWidget {
                 onChanged: null,
                 decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your Phone Number',
-                    prefixIcon: Icon(Icons.person)),
+                    prefixIcon: Icon(Icons.phone)),
               ),
               SizedBox(
                 height: 15.0,
