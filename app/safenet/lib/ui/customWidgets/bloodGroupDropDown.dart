@@ -16,7 +16,7 @@ class _BloodGroupDropDownState extends State<BloodGroupDropDown> {
         padding: EdgeInsets.symmetric(horizontal: 158.5),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            border: Border.all(color: Colors.lightBlueAccent, width: 1.0)),
+            border: Border.all(color: Color(0xff51adcf), width: 1.0)),
         child: DropdownButton<String>(
           underline: SizedBox(),
           isExpanded: true,

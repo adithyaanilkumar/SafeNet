@@ -4,8 +4,7 @@ import 'package:safenet/core/routes.dart';
 import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/core/viewmodals/register_model.dart';
 import 'package:safenet/core/viewmodals/welcome_model.dart';
-import 'package:safenet/ui/views/otp_entry.dart';
-import 'package:safenet/ui/views/user_details_entry.dart';
+import 'package:safenet/ui/views/home_view.dart';
 import 'package:safenet/ui/views/welcome_view.dart';
 
 void main() {
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: WelcomeView(),
+        home: HomeView(),
       ),
     );
   }
