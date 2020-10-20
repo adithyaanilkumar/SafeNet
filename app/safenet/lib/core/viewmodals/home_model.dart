@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  List<BottomNavigationBarItem> bottomNavBarIcons = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.account_circle),
-    ),
-    // BottomNavigationBarItem(icon: Icon(Icons.)),
-  ];
+  int _currentIndex = 0;
+
+  get currentIndex => _currentIndex;
+
+  set updateIndex(int index) {
+    _currentIndex = index;
+    notifyListeners();
+  }
 }
