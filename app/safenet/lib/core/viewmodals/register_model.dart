@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
 class RegisterModel extends ChangeNotifier {
-  String _title = "Safenet";
-  String get title => _title;
+  static String title = "Register";
+
+  static List<String> dropDownItems = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'O+',
+    'O-',
+    'AB+',
+    'AB-',
+  ];
 }

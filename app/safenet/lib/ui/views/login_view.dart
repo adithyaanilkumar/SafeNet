@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:safenet/core/routes.dart';
+import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
-import 'package:safenet/ui/customWidgets/facebookSignInButton.dart';
-import 'package:safenet/ui/customWidgets/googleSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
-import 'package:safenet/ui/views/register_view.dart';
 
 class LoginView extends StatelessWidget {
-  static const String id = 'loginView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -18,7 +17,10 @@ class LoginView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 120.0),
-              Center(child: MainTitle()),
+              Center(
+                  child: MainTitle(
+                mainTitle: LoginModel.title,
+              )),
               SizedBox(
                 height: 80.0,
               ),
@@ -27,7 +29,7 @@ class LoginView extends StatelessWidget {
                 onChanged: null,
                 decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your Phone Number',
-                    prefixIcon: Icon(Icons.person)),
+                    prefixIcon: Icon(Icons.phone)),
               ),
               SizedBox(
                 height: 15.0,
@@ -54,21 +56,13 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 8.0,
               ),
-              GoogleSignInButton(),
-              SizedBox(
-                height: 15.0,
-              ),
-              FacebookSignInButton(),
-              SizedBox(
-                height: 40.0,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Don't have an account?"),
                   FlatButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, RegisterView.id);
+                      Navigator.pushNamed(context, Routes.register);
                     },
                     padding: EdgeInsets.only(left: 0.0),
                     child: Text(
