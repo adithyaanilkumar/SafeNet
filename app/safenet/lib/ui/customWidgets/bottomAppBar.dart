@@ -30,7 +30,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           backgroundColor: Colors.amber,
         ),
         bottomNavigationBar: BottomAppBar(
-          elevation: ,
           shape: CircularNotchedRectangle(),
           clipBehavior: Clip.antiAlias,
           notchMargin: 5.0,
