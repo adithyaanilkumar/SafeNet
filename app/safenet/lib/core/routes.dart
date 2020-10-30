@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safenet/ui/customWidgets/bottomAppBar.dart';
 import 'package:safenet/ui/views/login_view.dart';
 import 'package:safenet/ui/views/otp_entry.dart';
 import 'package:safenet/ui/views/register_view.dart';
@@ -12,6 +13,7 @@ class Routes {
   static const String login = 'loginView';
   static const String userDetailsEntry = 'userDetailsEntry';
   static const String otpEntry = 'otpEntry';
+  static const String bottomNavBar = 'bottomNavBar';
 
   ///Each route is mapped to its respective view here.
   static Map<String, WidgetBuilder> getRoutes() {
@@ -21,6 +23,7 @@ class Routes {
       Routes.login: (context) => LoginView(),
       Routes.userDetailsEntry: (context) => UserDetailsEntry(),
       Routes.otpEntry: (context) => OTPEntry(),
+      Routes.bottomNavBar: (context) => CustomBottomAppBar(),
     };
   }
 }
