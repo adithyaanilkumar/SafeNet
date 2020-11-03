@@ -45,7 +45,9 @@ class LoginView extends StatelessWidget {
                 height: 15.0,
               ),
               CustomSignInButton(
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.bottomNavBar);
+                },
                 buttonColor: Color(0xff51adcf),
                 buttonText: "Sign In",
               ),
