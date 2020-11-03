@@ -3,6 +3,7 @@ import 'package:safenet/ui/constants.dart';
 import 'package:geolocation/geolocation.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong/latlong.dart" as latLng;
+import 'package:safenet/ui/customWidgets/searchBar.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -53,20 +54,7 @@ class _HomeViewState extends State<HomeView> {
             children: [
               Row(
                 children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    ),
-                    child: Container(
-                      width: 385.0,
-                      child: TextField(
-                        decoration: kTextFieldDecoration.copyWith(
-                            hintText: 'Search',
-                            prefixIcon: Icon(Icons.arrow_back_ios),
-                            suffixIcon: Icon(Icons.search_rounded)),
-                      ),
-                    ),
-                  ),
+                  SearchBar(),
                 ],
               ),
               Expanded(
