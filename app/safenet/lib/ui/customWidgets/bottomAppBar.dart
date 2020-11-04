@@ -27,7 +27,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         floatingActionButton: SwipeDetector(
           onSwipeUp: () {
             showModalBottomSheet(
-                context: context, builder: (context) => EmergencyDetailsView());
+                isScrollControlled: true,
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) => EmergencyDetailsView());
           },
           child: FloatingActionButton(
             onPressed: () {
