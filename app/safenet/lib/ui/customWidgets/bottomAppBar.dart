@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:safenet/core/viewmodals/home_model.dart';
+import 'package:safenet/ui/views/emergency_view.dart';
 import 'package:safenet/ui/views/home_view.dart';
 import 'package:safenet/ui/views/profile.dart';
+import 'package:swipedetector/swipedetector.dart';
 
 class BottomAppBarItem {
   BottomAppBarItem({this.iconData, this.text});
@@ -22,12 +24,20 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
     return Consumer<HomeViewModel>(builder: (context, model, child) {
       return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-          elevation: 2.0,
-          backgroundColor: Colors.amber,
+        floatingActionButton: SwipeDetector(
+          onSwipeUp: () {
+            showModalBottomSheet(
+                context: context, builder: (context) => EmergencyDetailsView());
+          },
+          child: FloatingActionButton(
+            onPressed: () {
+              print('tap');
+            },
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+            elevation: 2.0,
+            backgroundColor: Colors.amber,
+          ),
         ),
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.only(
