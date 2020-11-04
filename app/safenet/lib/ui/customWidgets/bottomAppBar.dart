@@ -67,6 +67,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           color: Color(0xff51adcf),
         ),
         body: PageView(
+          physics: new NeverScrollableScrollPhysics(),
           controller: _controller,
           onPageChanged: (int) {
             print('Page changes to index $int');
