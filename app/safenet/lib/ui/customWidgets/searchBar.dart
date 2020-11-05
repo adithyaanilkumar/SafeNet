@@ -9,9 +9,9 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: 10,
-        right: 15,
-        left: 15,
+        top: 27.0,
+        right: 15.0,
+        left: 15.0,
         child: Container(
           child: Card(
             shape: RoundedRectangleBorder(

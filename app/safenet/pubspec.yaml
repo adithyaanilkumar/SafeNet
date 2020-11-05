@@ -29,6 +29,8 @@ dependencies:
   flutter_signin_button: ^1.1.0
   geolocator: ^6.1.4
   provider: ^4.3.2+2
+  sliding_up_panel: ^1.0.2
+  swipedetector: ^1.2.0
 
 dev_dependencies:
   flutter_test:
