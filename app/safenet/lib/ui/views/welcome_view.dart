@@ -11,6 +11,7 @@ class WelcomeView extends StatefulWidget {
 }
 
 class _WelcomeViewState extends State<WelcomeView> {
+  /// Welcome View of the app where the user will be prompted to signIn or Register
   @override
   Widget build(BuildContext context) {
     return Scaffold(

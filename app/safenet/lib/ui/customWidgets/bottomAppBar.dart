@@ -6,12 +6,6 @@ import 'package:safenet/ui/views/home_view.dart';
 import 'package:safenet/ui/views/profile.dart';
 import 'package:swipedetector/swipedetector.dart';
 
-class BottomAppBarItem {
-  BottomAppBarItem({this.iconData, this.text});
-  IconData iconData;
-  String text;
-}
-
 class CustomBottomAppBar extends StatefulWidget {
   @override
   _CustomBottomAppBarState createState() => _CustomBottomAppBarState();
@@ -64,9 +58,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                         color: Color(0xffe8ffc1),
                       ),
                       onPressed: () {
-                        setState(() {
-                          _controller.jumpToPage(0);
-                        });
+                        model.updateIndex(0);
+                        if (model.currentIndex != _controller.page.floor()) {
+                          _controller.jumpToPage(model.currentIndex);
+                        }
                       }),
                   IconButton(
                       icon: Icon(
@@ -75,9 +70,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                         color: Color(0xffe8ffc1),
                       ),
                       onPressed: () {
-                        setState(() {
-                          _controller.jumpToPage(1);
-                        });
+                        model.updateIndex(1);
+                        if (model.currentIndex != _controller.page.floor()) {
+                          _controller.jumpToPage(model.currentIndex);
+                        }
                       })
                 ],
               ),
