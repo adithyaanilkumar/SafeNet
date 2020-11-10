@@ -5,8 +5,6 @@ import 'package:safenet/core/viewmodals/home_model.dart';
 import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/core/viewmodals/register_model.dart';
 import 'package:safenet/core/viewmodals/welcome_model.dart';
-import 'package:safenet/ui/customWidgets/bottomAppBar.dart';
-import 'package:safenet/ui/views/home_view.dart';
 import 'package:safenet/ui/views/welcome_view.dart';
 
 void main() {
@@ -27,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<HomeViewModel>(
             create: (context) => HomeViewModel())
       ],
+      // TODO: create a seperate file to map all the changeNotifierProviders to their repective Models.
       child: MaterialApp(
         routes: Routes.getRoutes(),
         theme: ThemeData(

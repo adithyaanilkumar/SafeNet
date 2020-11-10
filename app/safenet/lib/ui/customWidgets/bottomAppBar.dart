@@ -6,12 +6,6 @@ import 'package:safenet/ui/views/home_view.dart';
 import 'package:safenet/ui/views/profile.dart';
 import 'package:swipedetector/swipedetector.dart';
 
-class BottomAppBarItem {
-  BottomAppBarItem({this.iconData, this.text});
-  IconData iconData;
-  String text;
-}
-
 class CustomBottomAppBar extends StatefulWidget {
   @override
   _CustomBottomAppBarState createState() => _CustomBottomAppBarState();

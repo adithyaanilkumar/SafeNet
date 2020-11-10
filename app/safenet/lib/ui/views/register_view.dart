@@ -6,6 +6,7 @@ import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class RegisterView extends StatelessWidget {
+  /// RegisterView of the app where the user registers themselves by providing the necessary.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

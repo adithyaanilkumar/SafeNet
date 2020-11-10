@@ -6,6 +6,7 @@ import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class UserDetailsEntry extends StatelessWidget {
+  /// Page where the user enters all the requires details for registering in the app.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:safenet/ui/constants.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({
-    Key key,
-  }) : super(key: key);
+  /// custom search bar created to search any place on the map.
+  // TODO: The search bar does nothing as of now, must be developed to get location of the specified area and show it on the map
 
   @override
   Widget build(BuildContext context) {
