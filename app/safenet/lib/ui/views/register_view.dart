@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safenet/core/routes.dart';
+import 'package:safenet/core/services/routes.dart';
 import 'package:safenet/core/viewmodals/register_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
