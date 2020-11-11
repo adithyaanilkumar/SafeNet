@@ -13,6 +13,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   MapController controller = MapController();
   Location location = Location();
+  static const String url =
+      "https://api.mapbox.com/styles/v1/shrinkingviolet/ckgv04qs30mur19p91h9euprb/tiles/256/{z}/{x}/{y}@2x";
 
   buildMap() {
     location.getCurrentLocation().then((response) {
@@ -33,8 +35,7 @@ class _HomeViewState extends State<HomeView> {
             options: MapOptions(center: buildMap(), minZoom: 5.0),
             layers: [
               TileLayerOptions(
-                  urlTemplate:
-                      "https://api.mapbox.com/styles/v1/shrinkingviolet/ckgv04qs30mur19p91h9euprb/tiles/256/{z}/{x}/{y}@2x?access_token=$mapBoxToken",
+                  urlTemplate: "$url?access_token=$mapBoxToken",
                   additionalOptions: {
                     'accessToken': '$mapBoxToken',
                     'id': 'mapbox.mapbox-streets-v8'
