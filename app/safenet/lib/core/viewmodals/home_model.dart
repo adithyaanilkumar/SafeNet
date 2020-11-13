@@ -9,4 +9,11 @@ class HomeViewModel extends ChangeNotifier {
     _currentIndex = index;
     notifyListeners();
   }
+
+  String cityName;
+
+  updateCity(String city) {
+    cityName = city;
+    notifyListeners();
+  }
 }

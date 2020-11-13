@@ -3,6 +3,7 @@ import 'package:safenet/core/services/location.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong/latlong.dart" as latLng;
 import 'package:safenet/tokens.dart';
+import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/searchBar.dart';
 
 class HomeView extends StatefulWidget {
@@ -42,7 +43,34 @@ class _HomeViewState extends State<HomeView> {
                   }),
             ],
           ),
-          SearchBar(),
+          Positioned(
+            top: 27.0,
+            right: 15.0,
+            left: 15.0,
+            child: Container(
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                child: Container(
+                  width: 385.0,
+                  child: TextField(
+                    readOnly: true,
+                    onTap: () {
+                      showSearch(
+                        context: context,
+                        delegate: SearchBar(),
+                      );
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Search',
+                      suffixIcon: Icon(Icons.search_rounded),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
