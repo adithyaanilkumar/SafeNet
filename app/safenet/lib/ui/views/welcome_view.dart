@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:safenet/core/routes.dart';
+import 'package:safenet/core/services/routes.dart';
 import 'package:safenet/core/viewmodals/welcome_model.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 
