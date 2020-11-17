@@ -9,11 +9,17 @@ class GeoCoding {
       NetworkHelper networkHelper =
           NetworkHelper('$url/$cityQuery.json?access_token=$mapBoxToken');
 
-      var cityLocation = await networkHelper.getData();
+      var cityData = await networkHelper.getData();
 
-      var cityName = cityLocation['type'];
-      print(cityName);
-      return cityName;
+      var cityFeatures = cityData['features'];
+
+      // List cities = [];
+
+      // for (var i = 0; i < cityFeatures.length; i++) {
+      //   cities.add(cityFeatures[i]['place_name']);
+      // }
+      // print(cities);
+      return cityFeatures;
     } catch (e) {
       print(e);
     }

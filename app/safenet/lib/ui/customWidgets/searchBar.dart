@@ -27,8 +27,22 @@ class SearchBar extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     GeoCoding geoCoding = GeoCoding();
-    var cityData = geoCoding.getCityLocation(query).toString();
-    return Text(cityData);
+    // var cityData = geoCoding.getCityLocation(query).toString();
+    return FutureBuilder(
+        future: geoCoding.getCityLocation(query),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Text(snapshot.data[index]['place_name']),
+                );
+              },
+            );
+          }
+          return Container();
+        });
   }
 
   @override
