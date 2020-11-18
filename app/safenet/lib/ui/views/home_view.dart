@@ -26,6 +26,10 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
+  // buildCity() {
+  //   controller.move(latLng.LatLng(latitude, longitude), 15.0);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +46,7 @@ class _HomeViewState extends State<HomeView> {
         children: [
           FlutterMap(
             mapController: controller,
-            options: MapOptions(
-                center: latLng.LatLng(
-                  78.212963,
-                  17.236184,
-                ),
-                minZoom: 5.0),
+            options: MapOptions(center: latLng.LatLng(51.5, -0.09), zoom: 15.0),
             layers: [
               TileLayerOptions(
                   urlTemplate: "$url?access_token=$mapBoxToken",
@@ -55,6 +54,16 @@ class _HomeViewState extends State<HomeView> {
                     'accessToken': '$mapBoxToken',
                     'id': 'mapbox.mapbox-streets-v8'
                   }),
+              MarkerLayerOptions(markers: [
+                Marker(
+                  width: 80.0,
+                  height: 80.0,
+                  point: latLng.LatLng(51.5, -0.09),
+                  builder: (ctx) => new Container(
+                    child: Icon(Icons.location_on),
+                  ),
+                ),
+              ]),
             ],
           ),
           Positioned(
@@ -76,8 +85,11 @@ class _HomeViewState extends State<HomeView> {
                         delegate: SearchBar(),
                       );
                       if (result != null) {
+                        latitude = result[0];
+                        longitude = result[1];
+                        print('$latitude, $longitude');
                         controller.move(
-                            latLng.LatLng(result[0], result[1]), 20.0);
+                            latLng.LatLng(latitude, longitude), 15.0);
                       }
                     },
                     decoration: kTextFieldDecoration.copyWith(
