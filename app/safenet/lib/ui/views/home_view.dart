@@ -12,6 +12,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var latitude;
+  var longitude;
   MapController controller = MapController();
   Location location = Location();
   static const String url =
@@ -27,13 +29,25 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: new FloatingActionButton(
+        heroTag: null,
+        child: Icon(Icons.my_location),
+        onPressed: () {
+          buildMap();
+        },
+      ),
       extendBodyBehindAppBar: true,
       body: Stack(
         fit: StackFit.expand,
         children: [
           FlutterMap(
             mapController: controller,
-            options: MapOptions(center: buildMap(), minZoom: 5.0),
+            options: MapOptions(
+                center: latLng.LatLng(
+                  78.212963,
+                  17.236184,
+                ),
+                minZoom: 5.0),
             layers: [
               TileLayerOptions(
                   urlTemplate: "$url?access_token=$mapBoxToken",
@@ -56,11 +70,15 @@ class _HomeViewState extends State<HomeView> {
                   width: 385.0,
                   child: TextField(
                     readOnly: true,
-                    onTap: () {
-                      showSearch(
+                    onTap: () async {
+                      final result = await showSearch(
                         context: context,
                         delegate: SearchBar(),
                       );
+                      if (result != null) {
+                        controller.move(
+                            latLng.LatLng(result[0], result[1]), 20.0);
+                      }
                     },
                     decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Search',

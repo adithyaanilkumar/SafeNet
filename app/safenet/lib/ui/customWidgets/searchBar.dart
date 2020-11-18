@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:safenet/core/services/geocoding.dart';
+import 'package:safenet/core/services/location.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/core/viewmodals/home_model.dart';
+import 'package:safenet/ui/views/home_view.dart';
 
 class SearchBar extends SearchDelegate {
   @override
@@ -27,6 +29,7 @@ class SearchBar extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     GeoCoding geoCoding = GeoCoding();
+    Location location = Location();
     // var cityData = geoCoding.getCityLocation(query).toString();
     return FutureBuilder(
         future: geoCoding.getCityLocation(query),
@@ -36,7 +39,15 @@ class SearchBar extends SearchDelegate {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Container(
-                  child: Text(snapshot.data[index]['place_name']),
+                  child: ListTile(
+                    title: Text(snapshot.data[index]['place_name']),
+                    leading: Icon(Icons.location_city),
+                    onTap: () {
+                      var latitude = snapshot.data[index]['center'][0];
+                      var longitude = snapshot.data[index]['center'][1];
+                      close(context, [latitude, longitude]);
+                    },
+                  ),
                 );
               },
             );

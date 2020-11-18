@@ -10,10 +10,6 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String cityName;
-
-  updateCity(String city) {
-    cityName = city;
-    notifyListeners();
-  }
+  double latitude;
+  double longitude;
 }

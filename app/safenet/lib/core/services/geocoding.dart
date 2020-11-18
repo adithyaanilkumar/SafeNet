@@ -13,12 +13,6 @@ class GeoCoding {
 
       var cityFeatures = cityData['features'];
 
-      // List cities = [];
-
-      // for (var i = 0; i < cityFeatures.length; i++) {
-      //   cities.add(cityFeatures[i]['place_name']);
-      // }
-      // print(cities);
       return cityFeatures;
     } catch (e) {
       print(e);
