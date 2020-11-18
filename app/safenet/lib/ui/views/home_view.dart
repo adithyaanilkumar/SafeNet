@@ -34,8 +34,12 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: new FloatingActionButton(
+        backgroundColor: Colors.white,
         heroTag: null,
-        child: Icon(Icons.my_location),
+        child: Icon(
+          Icons.my_location,
+          color: Color(0xff5C5D5F),
+        ),
         onPressed: () {
           buildMap();
         },
@@ -85,11 +89,13 @@ class _HomeViewState extends State<HomeView> {
                         delegate: SearchBar(),
                       );
                       if (result != null) {
-                        latitude = result[0];
-                        longitude = result[1];
+                        latitude = result[1];
+                        longitude = result[0];
                         print('$latitude, $longitude');
-                        controller.move(
-                            latLng.LatLng(latitude, longitude), 15.0);
+                        controller.onReady.then((result) {
+                          controller.move(
+                              latLng.LatLng(latitude, longitude), 15.0);
+                        });
                       }
                     },
                     decoration: kTextFieldDecoration.copyWith(
