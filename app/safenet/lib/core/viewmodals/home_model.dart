@@ -9,4 +9,7 @@ class HomeViewModel extends ChangeNotifier {
     _currentIndex = index;
     notifyListeners();
   }
+
+  double latitude;
+  double longitude;
 }
