@@ -31,6 +31,7 @@
 .pub/
 /build/
 
+
 # Web related
 lib/generated_plugin_registrant.dart
 
@@ -39,3 +40,4 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+lib/tokens.dart

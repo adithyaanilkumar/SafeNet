@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:safenet/core/routes.dart';
+import 'package:safenet/core/services/routes.dart';
 import 'package:safenet/core/viewmodals/login_model.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class LoginView extends StatelessWidget {
+  /// LoginView of the app where the user registers themselves by providing the necessary.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,9 @@ class LoginView extends StatelessWidget {
                 height: 15.0,
               ),
               CustomSignInButton(
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.bottomNavBar);
+                },
                 buttonColor: Color(0xff51adcf),
                 buttonText: "Sign In",
               ),

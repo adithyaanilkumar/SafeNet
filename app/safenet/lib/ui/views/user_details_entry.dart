@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:safenet/core/services/routes.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/bloodGroupDropDown.dart';
 import 'package:safenet/ui/customWidgets/customSignInButton.dart';
 import 'package:safenet/ui/customWidgets/mainTitle.dart';
 
 class UserDetailsEntry extends StatelessWidget {
+  /// Page where the user enters all the requires details for registering in the app.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +115,9 @@ class UserDetailsEntry extends StatelessWidget {
                 height: 15.0,
               ),
               CustomSignInButton(
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.bottomNavBar);
+                },
                 buttonColor: Color(0xff51adcf),
                 buttonText: "Submit",
               )
