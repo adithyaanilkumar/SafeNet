@@ -24,10 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^2.3.0
-  cupertino_icons: ^1.0.0
   expandable_bottom_sheet: ^0.2.1+1
   flutter_map: ^0.10.1+1
   flutter_signin_button: ^1.1.0
+  font_awesome_flutter: ^8.10.0
   geolocator: ^6.1.4
   provider: ^4.3.2+2
   sliding_up_panel: ^1.0.2

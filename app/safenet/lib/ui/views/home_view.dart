@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:safenet/core/services/location.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong/latlong.dart" as latLng;
+import 'package:safenet/core/services/providers.dart';
+import 'package:safenet/core/viewmodals/home_model.dart';
 import 'package:safenet/tokens.dart';
 import 'package:safenet/ui/constants.dart';
 import 'package:safenet/ui/customWidgets/searchBar.dart';
@@ -23,91 +28,90 @@ class _HomeViewState extends State<HomeView> {
     location.getCurrentLocation().then((response) {
       controller.move(
           latLng.LatLng(location.latitude, location.longitude), 15.0);
+
+      Provider.of<HomeViewModel>(context, listen: false)
+          .addMarker(location.latitude, location.longitude);
     });
   }
 
-  // buildCity() {
-  //   controller.move(latLng.LatLng(latitude, longitude), 15.0);
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: new FloatingActionButton(
-        backgroundColor: Colors.white,
-        heroTag: null,
-        child: Icon(
-          Icons.my_location,
-          color: Color(0xff5C5D5F),
-        ),
-        onPressed: () {
-          buildMap();
-        },
-      ),
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          FlutterMap(
-            mapController: controller,
-            options: MapOptions(center: latLng.LatLng(51.5, -0.09), zoom: 15.0),
-            layers: [
-              TileLayerOptions(
-                  urlTemplate: "$url?access_token=$mapBoxToken",
-                  additionalOptions: {
-                    'accessToken': '$mapBoxToken',
-                    'id': 'mapbox.mapbox-streets-v8'
-                  }),
-              MarkerLayerOptions(markers: [
-                Marker(
-                  width: 80.0,
-                  height: 80.0,
-                  point: latLng.LatLng(51.5, -0.09),
-                  builder: (ctx) => new Container(
-                    child: Icon(Icons.location_on),
-                  ),
-                ),
-              ]),
-            ],
+    return ChangeNotifierProvider(
+      create: (_) => HomeViewModel(),
+      child: Scaffold(
+        floatingActionButton: new FloatingActionButton(
+          backgroundColor: Colors.white,
+          heroTag: null,
+          child: Icon(
+            Icons.my_location,
+            color: Color(0xff5C5D5F),
           ),
-          Positioned(
-            top: 27.0,
-            right: 15.0,
-            left: 15.0,
-            child: Container(
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
-                child: Container(
-                  width: 385.0,
-                  child: TextField(
-                    readOnly: true,
-                    onTap: () async {
-                      final result = await showSearch(
-                        context: context,
-                        delegate: SearchBar(),
-                      );
-                      if (result != null) {
-                        latitude = result[1];
-                        longitude = result[0];
-                        print('$latitude, $longitude');
-                        controller.onReady.then((result) {
-                          controller.move(
-                              latLng.LatLng(latitude, longitude), 15.0);
-                        });
-                      }
-                    },
-                    decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Search',
-                      suffixIcon: Icon(Icons.search_rounded),
+          onPressed: () {
+            buildMap();
+          },
+        ),
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            FlutterMap(
+              mapController: controller,
+              options:
+                  MapOptions(center: latLng.LatLng(51.5, -0.09), zoom: 15.0),
+              layers: [
+                TileLayerOptions(
+                    urlTemplate: "$url?access_token=$mapBoxToken",
+                    additionalOptions: {
+                      'accessToken': '$mapBoxToken',
+                      'id': 'mapbox.mapbox-streets-v8'
+                    }),
+                MarkerLayerOptions(
+                  markers: Provider.of<HomeViewModel>(context).markers,
+                )
+              ],
+            ),
+            Positioned(
+              top: 27.0,
+              right: 15.0,
+              left: 15.0,
+              child: Container(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  child: Container(
+                    width: 385.0,
+                    child: TextField(
+                      readOnly: true,
+                      onTap: () async {
+                        final result = await showSearch(
+                          context: context,
+                          delegate: SearchBar(),
+                        );
+
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .addMarker(result[1], result[0]);
+
+                        if (result != null) {
+                          latitude = result[1];
+                          longitude = result[0];
+                          controller.onReady.then((result) {
+                            controller.move(
+                                latLng.LatLng(latitude, longitude), 15.0);
+                          });
+                        }
+                      },
+                      decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Search',
+                        suffixIcon: Icon(Icons.search_rounded),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
