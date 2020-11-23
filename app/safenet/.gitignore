@@ -41,3 +41,5 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 lib/tokens.dart
+
+android/app/google-services.json
