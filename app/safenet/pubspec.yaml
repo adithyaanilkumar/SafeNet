@@ -24,7 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^2.3.0
+  cloud_firestore: ^0.14.3
   expandable_bottom_sheet: ^0.2.1+1
+  firebase_auth: ^0.18.3
+  firebase_core: ^0.5.2
   flutter_map: ^0.10.1+1
   flutter_signin_button: ^1.1.0
   font_awesome_flutter: ^8.10.0

@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:safenet/core/services/providers.dart';
 import 'package:safenet/core/services/routes.dart';
 import 'package:safenet/ui/views/welcome_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -13,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: Providers.providers,
-      // TODO: create a seperate file to map all the changeNotifierProviders to their repective Models.
       child: MaterialApp(
         routes: Routes.getRoutes(),
         theme: ThemeData(
