@@ -28,7 +28,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-promise-router": "^4.0.1",
-    "gsap": "^3.5.1",
+    "gsap": "^3.6.0",
     "joi": "^17.2.1",
     "mongoose": "^5.10.8",
     "passport": "^0.4.1",
