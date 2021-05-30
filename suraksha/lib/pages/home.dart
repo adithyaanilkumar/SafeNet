@@ -4,6 +4,7 @@ import 'package:suraksha/main.dart';
 import 'package:suraksha/pages/alert.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:lottie/lottie.dart';
+import 'package:suraksha/models/hero_dialog_route.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Home extends StatefulWidget {
   @override
@@ -162,11 +163,16 @@ class _HomeState extends State<Home> {
                   child: Container(
     height: 50.0,
     decoration: lightBox(),
-      child: GestureDetector(
+      child: InkWell(
             onTap: () {
               
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AlertPage()));
-            },
+                  Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+                  return const _PopupCard();
+                  
+                  }));
+                  
+                  },
+            
             child: Container(
                     width: 200,
                     decoration: darkBox(),                 
@@ -245,7 +251,7 @@ Widget contact(double ht,double wid){
               Container(
       height: 30.0,
       child: Center(
-        child: GestureDetector(
+        child: InkWell(
             onTap: () {},
             child: Container(
                 width: 100,
@@ -306,7 +312,7 @@ Widget contact(double ht,double wid){
               SizedBox(height:10),
               Container(
       height: 30.0,
-      child: GestureDetector(
+      child: InkWell(
           onTap: () {},
           child: Container(
               width: 100,
@@ -364,12 +370,12 @@ Widget explore(double ht){
             Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          exploreWidget("Bus Routes",Icons.map_outlined,Colors.yellow,'https://assets10.lottiefiles.com/packages/lf20_eivbhioz.json'),
-          exploreWidget("Ambulance",Icons.time_to_leave,Colors.red,'https://assets4.lottiefiles.com/packages/lf20_eppz7mfa.json'),
-          exploreWidget("Medical Info",Icons.medical_services,Colors.cyan,'https://assets10.lottiefiles.com/packages/lf20_pk5mpw6j.json'),
-          exploreWidget("Safe Routes",Icons.directions_walk,Colors.yellow,'https://assets6.lottiefiles.com/temp/lf20_FYZYCn.json' ),
-          exploreWidget("Safety Tips",Icons.privacy_tip_outlined,Colors.red,'https://assets9.lottiefiles.com/private_files/lf30_ufgbcgx8.json'),
-          exploreWidget("Chat with Us",Icons.chat,Colors.cyan,'https://assets1.lottiefiles.com/packages/lf20_6mtrurjh.json'),
+          exploreWidget("Bus Routes",Icons.map_outlined,Colors.yellow,'https://assets10.lottiefiles.com/packages/lf20_eivbhioz.json',true),
+          exploreWidget("Ambulance",Icons.time_to_leave,Colors.red,'https://assets4.lottiefiles.com/packages/lf20_eppz7mfa.json',true),
+          exploreWidget("Medical Info",Icons.medical_services,Colors.cyan,'https://assets10.lottiefiles.com/packages/lf20_pk5mpw6j.json',true),
+          exploreWidget("Safe Routes",Icons.directions_walk,Colors.yellow,'https://assets6.lottiefiles.com/temp/lf20_FYZYCn.json' ,false),
+          exploreWidget("Safety Tips",Icons.privacy_tip_outlined,Colors.red,'https://assets9.lottiefiles.com/private_files/lf30_ufgbcgx8.json',true),
+          exploreWidget("Chat with Us",Icons.chat,Colors.cyan,'https://assets1.lottiefiles.com/packages/lf20_6mtrurjh.json',true),
         ]
       ),]
     )
@@ -377,7 +383,7 @@ Widget explore(double ht){
   );
 }
 
-Widget exploreWidget(String text,IconData icon,Color color,String url) {
+Widget exploreWidget(String text,IconData icon,Color color,String url,bool isAnimate) {
   return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
         padding: EdgeInsets.all(10),
@@ -392,6 +398,7 @@ Widget exploreWidget(String text,IconData icon,Color color,String url) {
             Lottie.network(
               url,
               height: 35,
+              repeat: isAnimate,
             ),
             SizedBox(height: 10,),
             Text(text,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
@@ -564,6 +571,7 @@ Widget card(double wid,double ht){
                 child: Lottie.network(
                   'https://assets10.lottiefiles.com/private_files/lf30_fe507ybk.json',
                   fit: BoxFit.contain,
+                  animate: false,
                  // width: 
                 ),
               ),
@@ -577,7 +585,7 @@ Widget card(double wid,double ht){
                left: wid*0.20,
                child: Container(
       height: 40.0,
-      child: GestureDetector(
+      child: InkWell(
           onTap: () {},
           child: Container(
                 width: 150,
@@ -607,6 +615,11 @@ Widget card(double wid,double ht){
       
   ),
    );
+}
+
+
+
+
 }
 
 BoxDecoration lightBox() {
@@ -647,8 +660,129 @@ BoxDecoration darkBox() {
 }
 
 
+class _PopupCard extends StatelessWidget {
+  /// {@macro add_todo_popup_card}
+  const _PopupCard({Key key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Hero(
+          tag: "popup",
+          // createRectTween: (begin, end) {
+          //   return CustomRectTween(begin: begin, end: end);
+          // },
+          child: Material(
+            color: Color(0xFF292D32),
+            elevation: 2,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            child:Container(
+              height: 350,
+              width: 300,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 30,
+                    left: 50,
+                    child:Lottie.network('https://assets8.lottiefiles.com/packages/lf20_1ILlx2.json',height: 200) 
+                  
+                  ),
+                  Positioned(
+                    left: 85,
+                    top: 20,
+                    child: Text("Sending Help..",style: GoogleFonts.lato(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700))),
+                  Positioned(
+                    bottom: 110,
+                    left: 95,
+                    child: Text("As Fast As Possible...",style: GoogleFonts.lato(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w400))),
+                     Positioned(
+                    bottom: 80,
+                    left: 115,
+                    child: Text("Other Options:  ",style: GoogleFonts.lato(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w200))),
+               
+                    Positioned(
+                      bottom: 30,
+                      left: 40,
+                      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      Container(
+                      height: 40.0,
+                      child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                              width: 100,
+                              decoration: darkBox(),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                      Center(
+                                          child: Text(
+                                            "Police",
+                                              style: TextStyle(
+                                                  color: Colors.cyanAccent[400],
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                              ),
+                                          ),
+                                      )
+                                  ],
+                              ),
+                          ),
+                      ),
+
+                              ) ,
+                              SizedBox(width: 15,),
+                      Container(
+                      height: 40.0,
+                      child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                              width: 100,
+                              decoration: darkBox(),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                      Center(
+                                          child: Text(
+                                            "Contacts",
+                                              style: TextStyle(
+                                                  color: Colors.cyanAccent[400],
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                              ),
+                                          ),
+                                      )
+                                  ],
+                              ),
+                          ),
+                      ),
+
+                              ) ,
+                              
+                    ],))
+
+                ],              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+
+
+
+
+ 
+
+
+
+
 
 
 

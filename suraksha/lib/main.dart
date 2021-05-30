@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:suraksha/pages/profile.dart';
 import 'pages/home.dart';
+import 'pages/intro.dart';
+//import 'package:firebase_core/firebase_core.dart';
 var routes = <String, WidgetBuilder>{
    "/home": (BuildContext context) => Home(),
    "/profile":(BuildContext context) => ProfilePage(),
 };
 
 bool isDark = false;
+bool isLogin = false;
 
-void main() => runApp(new MyApp());
+void main(){
+  //WidgetsFlutterBinding.ensureInitialized();
+//  Firebase.initializeApp();
+ // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(new MyApp());
+  }
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -31,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData.dark(),
       theme: _light,
       themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-      home: Home(),
+      home: isLogin ? Home():Intro(),
     );
   }
 }
