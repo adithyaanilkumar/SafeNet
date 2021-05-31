@@ -1,21 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:suraksha/pages/login.dart';
 import 'package:suraksha/pages/profile.dart';
+import 'package:suraksha/pages/signup.dart';
+import 'package:suraksha/pages/splash.dart';
 import 'pages/home.dart';
 import 'pages/intro.dart';
 //import 'package:firebase_core/firebase_core.dart';
 var routes = <String, WidgetBuilder>{
    "/home": (BuildContext context) => Home(),
    "/profile":(BuildContext context) => ProfilePage(),
+   "/intro": (BuildContext context) => Intro(),
+   "/login": (BuildContext context) => Login(),
+   "/signin": (BuildContext context) => SignUp(),
 };
 
-bool isDark = false;
-bool isLogin = false;
+
+
+
 
 void main(){
-  //WidgetsFlutterBinding.ensureInitialized();
-//  Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+ Firebase.initializeApp();
  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(new MyApp());
   }
@@ -29,9 +37,7 @@ class _MyAppState extends State<MyApp> {
   ThemeData _light = ThemeData.light().copyWith(
     primaryColor: Color(0XFFEFF3F6),
   );
-  ThemeData _dark = ThemeData.dark().copyWith(
-    primaryColor: Color(0xFF292D32),
-  );
+ 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
@@ -39,8 +45,8 @@ class _MyAppState extends State<MyApp> {
       title: 'Safenet',
       darkTheme: ThemeData.dark(),
       theme: _light,
-      themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-      home: isLogin ? Home():Intro(),
+      themeMode: ThemeMode.light,
+      home: SplashPage(),
     );
   }
 }

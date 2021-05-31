@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suraksha/main.dart';
@@ -5,8 +7,12 @@ import 'package:suraksha/pages/alert.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:lottie/lottie.dart';
 import 'package:suraksha/models/hero_dialog_route.dart';
+
+import 'intro.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Home extends StatefulWidget {
+  final userData;
+  Home({Key key,this.userData}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -41,7 +47,7 @@ class _HomeState extends State<Home> {
               ..rotateZ(isDrawerOpen ? -50 : 0),
             duration: Duration(milliseconds: 300),
             decoration: BoxDecoration(
-             color: isDark?Color(0xFF292D32):Color(0xFFEFF3F6),
+             color: Color(0xFFEFF3F6),
               
               borderRadius:
                   isDrawerOpen ? BorderRadius.circular(20) : BorderRadius.circular(0),
@@ -497,20 +503,34 @@ Widget HiddenDrawer(){
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.cancel,
-                  color: Colors.white,
+              InkWell(
+                onTap: () async{
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => Intro(),
+                      ),
+                    );
+  
+},
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.cancel,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Log Out',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'Log Out',
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
+              ),
             )
           ],
         ),

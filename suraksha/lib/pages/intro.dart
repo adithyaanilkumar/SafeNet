@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:suraksha/pages/home.dart';
 import 'package:suraksha/pages/login.dart';
+import 'package:suraksha/pages/signup.dart';
 
 class Intro extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _IntroState extends State<Intro> {
       height: 40.0,
       child: InkWell(
           onTap: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context)=> Home()));
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=> Login()));
           },
           child: Container(
                 width: 200,
@@ -108,7 +109,10 @@ class _IntroState extends State<Intro> {
                child: Container(
       height: 40.0,
       child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+    context, CupertinoPageRoute(builder: (context) => SignUp()));
+          },
           child: Container(
                 width: 200,
                 decoration:  BoxDecoration(
