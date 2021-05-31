@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159015556339",
+    "project_id": "safenet-7ac6b",
+    "storage_bucket": "safenet-7ac6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159015556339:android:14a5e3c7b7ccb63da85386",
+        "android_client_info": {
+          "package_name": "com.safenet.suraksha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159015556339-gkg8iv3p15i5nrb39d23k67v1ib06vll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcFHWZ8JT6dzM8E1GlKU_RkvbCzyUh8UA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159015556339-gkg8iv3p15i5nrb39d23k67v1ib06vll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
