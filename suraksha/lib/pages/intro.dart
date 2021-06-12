@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:suraksha/pages/home.dart';
 import 'package:suraksha/pages/login.dart';
+import 'package:suraksha/pages/signphone.dart';
 import 'package:suraksha/pages/signup.dart';
 
 class Intro extends StatefulWidget {
@@ -67,78 +68,78 @@ class _IntroState extends State<Intro> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text("Join The Community, To Make The World,\na Safe Place",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w300),)),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: ht *0.04,),
+      //        Center(
+      //          child: Container(
+      // height: 40.0,
+      // child: InkWell(
+      //     onTap: () {
+      //       Navigator.push(context, CupertinoPageRoute(builder: (context)=> Login()));
+      //     },
+      //     child: Container(
+      //           width: 200,
+      //           decoration:  BoxDecoration(
+      //             borderRadius: BorderRadius.circular(20),
+      //             border: Border.all(
+      //               color: Colors.tealAccent[400],
+      //               width: 2,
+      //             )
+      //           ),
+      //           child: Row(
+      //               mainAxisAlignment: MainAxisAlignment.center,
+      //               children: <Widget>[
+      //                   Center(
+      //                       child: Text(
+      //                          "Login",
+      //                           style: TextStyle(
+      //                               color: Colors.tealAccent[400],
+      //                               fontSize: 16,
+      //                               fontWeight: FontWeight.w700,
+      //                           ),
+      //                       ),
+      //                   )
+      //               ],
+      //           ),
+      //     ),
+      // ),
+
+      //            ),
+      //        ),
+             //SizedBox(height: 10,), 
              Center(
                child: Container(
-      height: 40.0,
-      child: InkWell(
-          onTap: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context)=> Login()));
-          },
-          child: Container(
-                width: 200,
-                decoration:  BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.tealAccent[400],
-                    width: 2,
-                  )
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        Center(
-                            child: Text(
-                               "Login",
-                                style: TextStyle(
-                                    color: Colors.tealAccent[400],
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                ),
+                  height: 40.0,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                        context, CupertinoPageRoute(builder: (context) => SignPhone()));
+                      },
+                      child: Container(
+                            width: 200,
+                            decoration:  BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.tealAccent[400]
                             ),
-                        )
-                    ],
-                ),
-          ),
-      ),
-
-                 ),
-             ),
-             SizedBox(height: 10,), 
-             Center(
-               child: Container(
-      height: 40.0,
-      child: InkWell(
-          onTap: () {
-            Navigator.push(
-    context, CupertinoPageRoute(builder: (context) => SignUp()));
-          },
-          child: Container(
-                width: 200,
-                decoration:  BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.tealAccent[400]
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        Center(
-                            child: Text(
-                               "Sign up",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                ),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                    Center(
+                                        child: Text(
+                                          "Join Now",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                            ),
+                                        ),
+                                    )
+                                ],
                             ),
-                        )
-                    ],
-                ),
-          ),
-      ),
+                      ),
+                  ),
 
-                 ),
-             ),
+                            ),
+                        ),
                 ],),
               ),
             )

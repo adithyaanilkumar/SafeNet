@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "159015556339-j47b9u6prvaqqj8skdikconlq4mukmqb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.safenet.suraksha",
+            "certificate_hash": "55d4914a146d602416b040387c25bca3c6107940"
+          }
+        },
+        {
           "client_id": "159015556339-gkg8iv3p15i5nrb39d23k67v1ib06vll.apps.googleusercontent.com",
           "client_type": 3
         }
