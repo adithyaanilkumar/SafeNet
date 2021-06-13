@@ -135,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   /// Info Cell
-  Column _infoCell({String title, String value}) {
+  Column _infoCell({String title="", String value=''}) {
     return Column(
       children: <Widget>[
         Text(

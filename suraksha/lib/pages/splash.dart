@@ -10,14 +10,14 @@ import 'login.dart';
 
 class SplashPage extends StatefulWidget {
   final refreshCache;
-  SplashPage({Key key,this.refreshCache}) : super(key: key);
+  SplashPage({Key? key,this.refreshCache}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-  Future initialisefb;
+  late Future initialisefb;
 
   initialiseFirebase() async {
     try{
@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
         await FirebaseFirestore.instance.terminate();
         await FirebaseFirestore.instance.clearPersistence();
       }
-     User user = FirebaseAuth.instance
+     User? user = FirebaseAuth.instance
             .currentUser;
             
               if(user == null){
@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
             
                     DocumentSnapshot result =  await FirebaseFirestore.instance
                                       .collection('users')
-                                      .doc(FirebaseAuth.instance.currentUser.uid)
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
                                       .get();
                     if(result.exists){
                       return result.data();
@@ -61,6 +61,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.black,
       child: Center(
         child: FutureBuilder(
          future: initialisefb,

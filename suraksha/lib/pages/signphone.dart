@@ -13,7 +13,7 @@ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 
 class SignPhone extends StatefulWidget {
-  const SignPhone({ Key key }) : super(key: key);
+  const SignPhone({ Key? key }) : super(key: key);
 
   @override
   _SignPhoneState createState() => _SignPhoneState();
@@ -259,7 +259,7 @@ class _SignPhoneState extends State<SignPhone> {
                                                   await _firestore
                                                       .collection('users')
                                                       .doc(
-                                                          _auth.currentUser.uid)
+                                                          _auth.currentUser!.uid)
                                                       .set(
                                                           {
                                                         
@@ -360,7 +360,7 @@ class _SignPhoneState extends State<SignPhone> {
                   //store registration details in firestore database
                   await _firestore
                       .collection('users')
-                      .doc(_auth.currentUser.uid)
+                      .doc(_auth.currentUser!.uid)
                       .set({
                         
                         'phone number': phoneno,
@@ -389,7 +389,7 @@ class _SignPhoneState extends State<SignPhone> {
         debugPrint('test 4');
       },
       verificationFailed: (FirebaseAuthException error) {
-        debugPrint('test 5' + error.message);
+        debugPrint('Error');
         setState(() {
           isLoading = false;
         });

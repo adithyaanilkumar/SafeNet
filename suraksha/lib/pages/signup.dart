@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({Key key}) : super(key: key);
+  SignUp({Key? key}) : super(key: key);
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -14,7 +14,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
 
-  TextEditingController emailInputController;
+  late TextEditingController emailInputController;
  // TextEditingController pwdInputController;
   //TextEditingController confirmPwdInputController;
 
@@ -28,13 +28,13 @@ class _SignUpState extends State<SignUp> {
   }
 
   String emailValidator(String value) {
-    Pattern pattern =
+    String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value)) {
       return 'Email format is invalid';
     } else {
-      return null;
+      return "";
     }
   }
 
@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
     if (value != '' ||value.length != 10) {
       return 'Enter Valid phone number';
     } else {
-      return null;
+      return "";
     }
   }
 

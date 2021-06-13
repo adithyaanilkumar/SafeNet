@@ -3,6 +3,8 @@
    <application
         android:label="suraksha"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+             android:value="AIzaSyDmxafrl10im8gbfjkQJsOkU-n93N7fDaQ"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -27,8 +29,7 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
-              <meta-data android:name="com.google.android.geo.API_KEY"
-              android:value="AIzaSyCQyrxYFr7XiTXbtxpkQoqzVBHRI1uLMZI"/>
+             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -40,4 +41,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>
