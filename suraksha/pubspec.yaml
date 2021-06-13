@@ -18,17 +18,20 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   curved_navigation_bar: ^0.3.4
+  google_maps_flutter: ^2.0.6
   #geolocator: '^2.1.0'
   #geolocator: 6.2.1              # AndroidX - Breaking! 
   #google_api_availability: 1.0.6  # Geolocator Dependency.                     # Geolocator Dependency. 
   #permission_handler: 2.2.0       # Geolocator & Meta Dependency.
-  google_maps_flutter:
+  geocoding: ^2.0.0
+  geolocator: ^7.1.0
+  flutter_polyline_points: ^1.0.0
   sliding_up_panel: ^1.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

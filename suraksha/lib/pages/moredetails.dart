@@ -6,19 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'home.dart';
 
 class MDetails extends StatefulWidget {
-  MDetails({Key key}) : super(key: key);
+  MDetails({Key? key}) : super(key: key);
 
   @override
   _MDetailsState createState() => _MDetailsState();
 }
 
 class _MDetailsState extends State<MDetails> {
-  String _chosenValue;
+  late String _chosenValue;
   bool _isHidden = true;
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
 
-  TextEditingController emailInputController;
-  TextEditingController userInputController;
+  late TextEditingController emailInputController;
+  late TextEditingController userInputController;
   //TextEditingController confirmPwdInputController;
 
   @override
@@ -30,19 +30,19 @@ class _MDetailsState extends State<MDetails> {
     super.initState();
   }
 
-  String emailValidator(String value) {
-    Pattern pattern =
+  String? emailValidator(String? value) {
+    String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value)) {
+    if (!regex.hasMatch(value!)) {
       return 'Email format is invalid';
     } else {
       return null;
     }
   }
 
-  String userValidator(String value) {
-    if (value.length == 0) {
+  String? userValidator(String? value) {
+    if (value!.length == 0) {
       return 'Enter Username';
     } else {
       return null;
@@ -82,8 +82,8 @@ class _MDetailsState extends State<MDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: ht * 0.01),
-                    Text("Setting Up Your \nProfile",style: GoogleFonts.roboto(color: Colors.indigoAccent[700],fontSize: 25,decoration: TextDecoration.none,fontWeight: FontWeight.w500),textAlign: TextAlign.center,),
-                    SizedBox(height:  ht * 0.06,),
+                    Text("Setting Up Your \nProfile",style: GoogleFonts.lato(color: Colors.indigoAccent[700],fontSize: 25,decoration: TextDecoration.none,fontWeight: FontWeight.w500),textAlign: TextAlign.center,),
+                    SizedBox(height:  ht * 0.1,),
                      Container(
                       width: wid * 0.35,
                       child: Material(
@@ -157,15 +157,15 @@ class _MDetailsState extends State<MDetails> {
                                         ));
                                       }).toList(),
                                       hint:Text(
-                                        "Please choose a langauage",
+                                        "Please choose a language",
                                         style: TextStyle(
                                             color: Colors.indigoAccent[700],
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      onChanged: (String value) {
+                                      onChanged: (String? value) {
                                         setState(() {
-                                          _chosenValue = value;
+                                          _chosenValue = value!;
                                         });
                                       },
 ),
@@ -251,12 +251,12 @@ Widget custombutton(BuildContext context,double ht,double wid) {
                         height: ht * 0.06,
                         child: InkWell(
                             onTap: (){
-                              if (_registerFormKey.currentState.validate()) {
+                              if (_registerFormKey.currentState!.validate()) {
                             
                                   FirebaseFirestore.instance.collection("users")
-                                          .doc(FirebaseAuth.instance.currentUser.uid)
+                                          .doc(FirebaseAuth.instance.currentUser!.uid)
                                           .set({
-                                        "uid": FirebaseAuth.instance.currentUser.uid,
+                                        "uid": FirebaseAuth.instance.currentUser!.uid,
                                         "username":userInputController.text,
                                         "email": emailInputController.text,
                                         "gender":_chosenValue,

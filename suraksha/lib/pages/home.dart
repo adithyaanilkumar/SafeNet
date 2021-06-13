@@ -7,12 +7,13 @@ import 'package:suraksha/pages/alert.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:lottie/lottie.dart';
 import 'package:suraksha/models/hero_dialog_route.dart';
+import 'package:suraksha/pages/gmap.dart';
 
 import 'intro.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Home extends StatefulWidget {
   final userData;
-  Home({Key key,this.userData}) : super(key: key);
+  Home({Key? key,this.userData}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -606,7 +607,16 @@ Widget card(double wid,double ht){
                child: Container(
       height: 40.0,
       child: InkWell(
-          onTap: () {},
+          onTap: () {
+            setState(() {
+                      Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => MapView(),
+                      ),
+                    );    
+                        });
+          },
           child: Container(
                 width: 150,
                  decoration:  lightBox(),
@@ -682,7 +692,7 @@ BoxDecoration darkBox() {
 
 class _PopupCard extends StatelessWidget {
   /// {@macro add_todo_popup_card}
-  const _PopupCard({Key key}) : super(key: key);
+  const _PopupCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

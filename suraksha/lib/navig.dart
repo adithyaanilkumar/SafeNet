@@ -4,7 +4,7 @@ import 'pages/map.dart';
 import 'pages/home.dart';
 import 'pages/profile.dart';
 class Navig extends StatefulWidget {
-  Navig({Key key}) : super(key: key);
+  Navig({Key? key}) : super(key: key);
 
   @override
   _NavigState createState() => _NavigState();
