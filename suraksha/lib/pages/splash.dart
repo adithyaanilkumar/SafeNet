@@ -81,7 +81,12 @@ class _SplashPageState extends State<SplashPage> {
            }       
            else{
              return Container(
-               child: Center(child: Material(child: Text("loading")),),
+               color: Colors.black,
+               child: Center(child: Material(child: CircularProgressIndicator(
+                 backgroundColor: Colors.redAccent,
+                 valueColor: AlwaysStoppedAnimation(Colors.green),
+                 strokeWidth: 10,
+               )),),
              );
            }
          },
