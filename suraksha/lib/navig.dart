@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'pages/map.dart';  
+ import 'package:suraksha/pages/gmap.dart';
 import 'pages/home.dart';
 import 'pages/profile.dart';
 class Navig extends StatefulWidget {
@@ -27,7 +27,7 @@ class _NavigState extends State<Navig> {
              child: FloatingActionButton(child: Icon(Icons.location_on),
              backgroundColor: Colors.cyanAccent[400],
              onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Gmap()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GMap()));
              },
              ),
            ),

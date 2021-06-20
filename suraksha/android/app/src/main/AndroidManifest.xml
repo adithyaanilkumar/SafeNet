@@ -4,7 +4,7 @@
         android:label="suraksha"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-             android:value="AIzaSyDmxafrl10im8gbfjkQJsOkU-n93N7fDaQ"/>
+             android:value="GOOGLE_API_KEY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -181,28 +181,31 @@ class _SignPhoneState extends State<SignPhone> {
                               SizedBox(width: 10,),
                               numbutton(ht, wid,"0"),
                               SizedBox(width: 10,),
-                              InkWell(                                 
-                               onTap: (){
-                                setState(() {
-                                  if(!isOTPScreen){
-                                       if(phoneno != ''){
-                                         phoneno = phoneno.substring(0,phoneno.length-1);
-                                       }           
-                                }                  
-                                else {
-                                   if(otp != ''){
-                                         otp = otp.substring(0,otp.length-1);
-                                       }        
-                                }
-                                                                  });
-                              },
-                              child: Container(
-                                height: ht * 0.07,
-                                width: wid *0.12,
-                                child: Center(
-                                  child: Icon(Icons.backspace_outlined,size: 20,color: Colors.black38,)
+                              Material(
+                                color: Colors.transparent,
+                                child: InkWell(                                 
+                                 onTap: (){
+                                  setState(() {
+                                    if(!isOTPScreen){
+                                         if(phoneno != ''){
+                                           phoneno = phoneno.substring(0,phoneno.length-1);
+                                         }           
+                                  }                  
+                                  else {
+                                     if(otp != ''){
+                                           otp = otp.substring(0,otp.length-1);
+                                         }        
+                                  }
+                                                                    });
+                                },
+                                child: Container(
+                                  height: ht * 0.07,
+                                  width: wid *0.12,
+                                  child: Center(
+                                    child: Icon(Icons.backspace_outlined,size: 20,color: Colors.black38,)
+                                  ),
+                                ), 
                                 ),
-                              ), 
                               )
                             ],
                           ),
@@ -213,128 +216,134 @@ class _SignPhoneState extends State<SignPhone> {
   }
 
   Widget numbutton(double ht, double wid,String num) {
-    return InkWell(
-                                onTap: (){
-                                  setState(() {
-                                    if(!isOTPScreen){
-                                       if(phoneno.length < 10){
-                                         phoneno += num;
-                                       }  
-                                  }       
-                                  else {
-                                    if(otp.length < 8){
-                                         otp += num;
-                                       }  
-                                  }                      
-                                                                    });
-                                },
-                                child: Container(
-                                  height: ht * 0.07,
-                                  width: wid *0.12,
-                                  child: Center(
-                                    child: Text(num,style: GoogleFonts.poppins(fontSize: 28,fontWeight: FontWeight.w400))
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      if(!isOTPScreen){
+                                         if(phoneno.length < 10){
+                                           phoneno += num;
+                                         }  
+                                    }       
+                                    else {
+                                      if(otp.length < 8){
+                                           otp += num;
+                                         }  
+                                    }                      
+                                                                      });
+                                  },
+                                  child: Container(
+                                    height: ht * 0.07,
+                                    width: wid *0.12,
+                                    child: Center(
+                                      child: Text(num,style: GoogleFonts.poppins(fontSize: 28,fontWeight: FontWeight.w400))
+                                    ),
                                   ),
                                 ),
-                              );
+    );
   }
 
  Widget custombutton(BuildContext context,double ht,double wid,String text) {
     return Center(
                         child: Container(
                         height: ht * 0.06,
-                        child: InkWell(
-                            onTap: isOTPScreen?() async{
-                               try {
-                                    await _auth
-                                        .signInWithCredential(
-                                            PhoneAuthProvider.credential(
-                                                verificationId:
-                                                    verificationCode,
-                                                smsCode: otp))
-                                        .then((user) async => {
-                                              //sign in was success
-                                              if (user != null)
-                                                {
-                                                  //store registration details in firestore database
-                                                  await _firestore
-                                                      .collection('users')
-                                                      .doc(
-                                                          _auth.currentUser!.uid)
-                                                      .set(
-                                                          {
-                                                        
-                                                        'phonenumber':phoneno,
-                                                            
-                                                      },
-                                                          SetOptions(
-                                                              merge:
-                                                                  true)).then(
-                                                          (value) => {
-                                                                //then move to authorised area
-                                                                setState(() {
-                                                                  isLoading =
-                                                                      false;
-                                                                  isResend =
-                                                                      false;
-                                                                })
-                                                              }),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                              onTap: isOTPScreen?() async{
+                                 try {
+                                      await _auth
+                                          .signInWithCredential(
+                                              PhoneAuthProvider.credential(
+                                                  verificationId:
+                                                      verificationCode,
+                                                  smsCode: otp))
+                                          .then((user) async => {
+                                                //sign in was success
+                                                if (user != null)
+                                                  {
+                                                    //store registration details in firestore database
+                                                    await _firestore
+                                                        .collection('users')
+                                                        .doc(
+                                                            _auth.currentUser!.uid)
+                                                        .set(
+                                                            {
+                                                          
+                                                          'phonenumber':phoneno,
+                                                              
+                                                        },
+                                                            SetOptions(
+                                                                merge:
+                                                                    true)).then(
+                                                            (value) => {
+                                                                  //then move to authorised area
+                                                                  setState(() {
+                                                                    isLoading =
+                                                                        false;
+                                                                    isResend =
+                                                                        false;
+                                                                  })
+                                                                }),
 
-                                                  setState(() {
-                                                    isLoading = false;
-                                                    isResend = false;
-                                                  }),
-                                                  Navigator.pushAndRemoveUntil(
-                                                    context,
-                                                    CupertinoPageRoute(builder: (context)=> MDetails()),
-                                                    (route) => false,
-                                                  )
-                                                }
-                                            })
-                                        // ignore: return_of_invalid_type_from_catch_error
-                                        .catchError((error) => {
-                                              setState(() {
-                                                isLoading = false;
-                                                isResend = true;
-                                              }),
-                                            });
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-                                  } catch (e) {
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-                                  }
+                                                    setState(() {
+                                                      isLoading = false;
+                                                      isResend = false;
+                                                    }),
+                                                    Navigator.pushAndRemoveUntil(
+                                                      context,
+                                                      CupertinoPageRoute(builder: (context)=> MDetails()),
+                                                      (route) => false,
+                                                    )
+                                                  }
+                                              })
+                                          // ignore: return_of_invalid_type_from_catch_error
+                                          .catchError((error) => {
+                                                setState(() {
+                                                  isLoading = false;
+                                                  isResend = true;
+                                                }),
+                                              });
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                    } catch (e) {
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                    }
 
-                            } : (){ 
-                              setState(() {
-                                  verifySign();
-                                  isRegister = false;
-                                  isOTPScreen =true;
-                                                });},
-                              
-                            child: Container(
-                                  width: wid*0.2,
-                                  decoration:  BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.indigo[700],
-                                  ),
-                                  child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                          Center(
-                                              child: Text(
-                                                text,
-                                                  style: GoogleFonts.poppins(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.w500,
-                                                  ),
-                                              ),
-                                          )
-                                      ],
-                                  ),
-                            ),
+                              } : (){ 
+                                setState(() {
+                                    verifySign();
+                                    isRegister = false;
+                                    isOTPScreen =true;
+                                                  });},
+                                
+                              child: Container(
+                                    width: wid*0.2,
+                                    decoration:  BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.indigo[700],
+                                    ),
+                                    child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                            Center(
+                                                child: Text(
+                                                  text,
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w500,
+                                                    ),
+                                                ),
+                                            )
+                                        ],
+                                    ),
+                              ),
+                          ),
                         ),
 
                                   ),

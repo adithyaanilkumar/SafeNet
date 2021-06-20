@@ -170,36 +170,39 @@ class _HomeState extends State<Home> {
                   child: Container(
     height: 50.0,
     decoration: lightBox(),
-      child: InkWell(
-            onTap: () {
-              
-                  Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-                  return const _PopupCard();
-                  
-                  }));
-                  
-                  },
-            
-            child: Container(
-                    width: 200,
-                    decoration: darkBox(),                 
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                              Center(
-                                  child: Text(
-                                     "NEED HELP!",
-                                      style: TextStyle(
-                                          color: Colors.cyanAccent[400],
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                      ),
-                                  ),
-                              )
-                          ],
-                      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+              onTap: () {
+                
+                    Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+                    return const _PopupCard();
                     
-            ),
+                    }));
+                    
+                    },
+              
+              child: Container(
+                      width: 200,
+                      decoration: darkBox(),                 
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                                Center(
+                                    child: Text(
+                                       "NEED HELP!",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.cyanAccent[400],
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                        ),
+                                    ),
+                                )
+                            ],
+                        ),
+                      
+              ),
+        ),
       ),
 ),
                 )
@@ -234,7 +237,7 @@ Widget contact(double ht,double wid){
           width: wid * 0.4,
           
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Color.fromRGBO(252, 74, 26, 1),Color.fromRGBO(247, 183, 51, 1)]),
+            gradient: LinearGradient(colors: [Color(0XFF7F00FF),Color(0XFFE100FF)]),
             boxShadow: [BoxShadow(
             //  color:Color.fromRGBO(0,0,0,0.1),
               color: Colors.grey.shade300,
@@ -253,45 +256,50 @@ Widget contact(double ht,double wid){
             children: [
               Text('Active \nEmergency',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20)),
               SizedBox(height:20),
-              Text('Call 101 for emergencies',style: TextStyle(color: Colors.white.withOpacity(0.9),fontWeight: FontWeight.w100,fontSize: 15)),
+              Text('Call 101 for emergencies',style: TextStyle(color: Colors.white.withOpacity(0.9),fontWeight: FontWeight.w300,fontSize: 15)),
               SizedBox(height:10),
               Container(
       height: 30.0,
       child: Center(
-        child: InkWell(
-            onTap: () {},
-            child: Container(
-                width: 100,
-                decoration:  BoxDecoration(
-            color: Color(0xFFEFF3F6),
-            boxShadow: [BoxShadow(
-              color:Color.fromRGBO(0,0,0,0.1),
-              offset: Offset(4,3),
-            blurRadius: 6.0,
-            spreadRadius: 5.0),
-            BoxShadow(
-              color:Color.fromRGBO(255,255,255,0.1),
-              offset: Offset(-3,-3),
-            blurRadius: 8.0,
-            spreadRadius: 3.0),],
-            borderRadius: BorderRadius.circular(20),
-          ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        Center(
-                            child: Text(
-                               "1-0-1",
-                                style: TextStyle(
-                                    color: Colors.orange,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                ),
-                            ),
-                        )
-                    ],
-                ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=> AlertPage()));
+              },
+              child: Container(
+                  width: 100,
+                  decoration:  BoxDecoration(
+              color: Color(0xFFEFF3F6),
+              boxShadow: [BoxShadow(
+                color:Color.fromRGBO(0,0,0,0.1),
+                offset: Offset(4,3),
+              blurRadius: 6.0,
+              spreadRadius: 5.0),
+              BoxShadow(
+                color:Color.fromRGBO(255,255,255,0.1),
+                offset: Offset(-3,-3),
+              blurRadius: 8.0,
+              spreadRadius: 3.0),],
+              borderRadius: BorderRadius.circular(20),
             ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                          Center(
+                              child: Text(
+                                 "1-0-1",
+                                  style: TextStyle(
+                                      color: Color(0XFF7F00FF) ,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                  ),
+                              ),
+                          )
+                      ],
+                  ),
+              ),
+          ),
         ),
       ),
 )
@@ -313,46 +321,49 @@ Widget contact(double ht,double wid){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Contacts',style: TextStyle(color: Colors.cyanAccent[400],fontWeight: FontWeight.bold,fontSize: 25)),
+              Text('Contacts',style: TextStyle(color: Color(0XFF7F00FF),fontWeight: FontWeight.bold,fontSize: 25)),
               SizedBox(height:35),
               Text('Call your Close Ones',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w300,fontSize: 15)),
               SizedBox(height:10),
               Container(
       height: 30.0,
-      child: InkWell(
-          onTap: () {},
-          child: Container(
-              width: 100,
-              decoration:  BoxDecoration(
-            color: Color(0xFFEFF3F6),
-            boxShadow: [BoxShadow(
-              color:Color.fromRGBO(0,0,0,0.2),
-              offset: Offset(4,3),
-            blurRadius: 6.0,
-            spreadRadius: 5.0),
-            BoxShadow(
-              color:Color.fromRGBO(255,255,255,0.9),
-              offset: Offset(-3,-3),
-            blurRadius: 8.0,
-            spreadRadius: 3.0),],
-            borderRadius: BorderRadius.circular(20),
-          ),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                      Center(
-                          child: Text(
-                             "Call",
-                              style: TextStyle(
-                                  color: Colors.cyanAccent[400],
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                              ),
-                          ),
-                      )
-                  ],
-              ),
-          ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+            onTap: () {},
+            child: Container(
+                width: 100,
+                decoration:  BoxDecoration(
+              color: Color(0xFFEFF3F6),
+              boxShadow: [BoxShadow(
+                color:Color.fromRGBO(0,0,0,0.2),
+                offset: Offset(4,3),
+              blurRadius: 6.0,
+              spreadRadius: 5.0),
+              BoxShadow(
+                color:Color.fromRGBO(255,255,255,0.9),
+                offset: Offset(-3,-3),
+              blurRadius: 8.0,
+              spreadRadius: 3.0),],
+              borderRadius: BorderRadius.circular(20),
+            ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                        Center(
+                            child: Text(
+                               "Call",
+                                style: TextStyle(
+                                    color: Color(0XFF7F00FF),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                ),
+                            ),
+                        )
+                    ],
+                ),
+            ),
+        ),
       ),
 
                ) ]
@@ -391,27 +402,33 @@ Widget explore(double ht){
 }
 
 Widget exploreWidget(String text,IconData icon,Color color,String url,bool isAnimate) {
-  return Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        padding: EdgeInsets.all(10),
-        height: 81,
-        width: 80,
-        
-        decoration:  lightBox(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-          //  Icon(icon,color: color,size: 25,),
-            Lottie.network(
-              url,
-              height: 35,
-              repeat: isAnimate,
+  return Material(
+    color: Colors.transparent,
+    child: InkWell(
+      onTap: (){},
+      child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.all(10),
+            height: 81,
+            width: 80,
+            
+            decoration:  lightBox(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+              //  Icon(icon,color: color,size: 25,),
+                Lottie.network(
+                  url,
+                  height: 35,
+                  repeat: isAnimate,
+                ),
+                SizedBox(height: 10,),
+                Text(text,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+              ]
             ),
-            SizedBox(height: 10,),
-            Text(text,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
-          ]
-        ),
-    
+        
+      ),
+    ),
   );
 }
 
@@ -448,7 +465,7 @@ Widget HiddenDrawer(){
                 ),
                 Text(
                   'Aditya A',
-                  style: GoogleFonts.acme(
+                  style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
@@ -467,16 +484,13 @@ Widget HiddenDrawer(){
                   height: 20,
                 ),
                 _customRow(
-                 'Your Cart',
-                  Icons.shopping_cart_outlined,
+                 'Community',
+                  Icons.people_outline,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                _customRow(
-                 'Saved',
-                  Icons.bookmark_border,
-                ),
+                
                 SizedBox(
                   height: 20,
                 ),
@@ -504,35 +518,38 @@ Widget HiddenDrawer(){
                 ),
               ],
             ),
-              InkWell(
-                onTap: () async{
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.pushReplacement(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => Intro(),
-                      ),
-                    );
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () async{
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => Intro(),
+                        ),
+                      );
   
 },
-              child: Container(
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.cancel,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Log Out',
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
+                child: Container(
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Log Out',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
+            ),
+              )
           ],
         ),
       ),
@@ -543,20 +560,26 @@ Widget HiddenDrawer(){
 
 
   Widget _customRow(String text,IconData icon){
-    return Row(
-      children: <Widget>[
-        Icon(
-          icon,
-          color: Colors.white,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: (){},
+        child: Row(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              text,
+              style: TextStyle(color: Colors.white),
+            )
+          ],
         ),
-        SizedBox(
-          width: 20,
-        ),
-        Text(
-          text,
-          style: TextStyle(color: Colors.white),
-        )
-      ],
+      ),
     );
   }
 
@@ -573,7 +596,20 @@ Widget card(double wid,double ht){
           height: ht *0.30,
           width: wid * 0.75,
           
-          decoration:lightBox(),
+          decoration:BoxDecoration(
+           gradient: LinearGradient(colors: [Color(0XFF7F00FF),Color(0XFFE100FF)]),
+          boxShadow: [BoxShadow(
+            color:Color.fromRGBO(0,0,0,0.2),
+            offset: Offset(4,3),
+          blurRadius: 6.0,
+          spreadRadius: 5.0),
+          BoxShadow(
+            color:Color.fromRGBO(255,255,255,0.9),
+            offset: Offset(-3,-3),
+          blurRadius: 8.0,
+          spreadRadius: 3.0),],
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Stack(
           children: [
             // Column(
@@ -598,44 +634,47 @@ Widget card(double wid,double ht){
               ),
             ),
             Positioned(
-              top: 30,
+              top: 20,
               right: wid*0.12,
-              child: Text("Get Home \nSafetly",textAlign:TextAlign.end,style: GoogleFonts.teko(fontSize: 30,fontWeight: FontWeight.w700,)),),
+              child: Text("Get Home \nSafetly",textAlign:TextAlign.end,style: GoogleFonts.teko(color: Colors.white ,fontSize: 30,fontWeight: FontWeight.w700,)),),
              Positioned(
                bottom: 20,
                left: wid*0.20,
                child: Container(
       height: 40.0,
-      child: InkWell(
-          onTap: () {
-            setState(() {
-                      Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => MapView(),
-                      ),
-                    );    
-                        });
-          },
-          child: Container(
-                width: 150,
-                 decoration:  lightBox(),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        Center(
-                            child: Text(
-                               "Locate",
-                                style: TextStyle(
-                                    color: Colors.cyanAccent[400],
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                ),
-                            ),
-                        )
-                    ],
-                ),
-          ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+            onTap: () {
+              setState(() {
+                        Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => GMap(),
+                        ),
+                      );    
+                          });
+            },
+            child: Container(
+                  width: 150,
+                   decoration:  lightBox(),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                          Center(
+                              child: Text(
+                                 "Locate",
+                                  style: TextStyle(
+                                      color: Color(0XFF7F00FF),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                  ),
+                              ),
+                          )
+                      ],
+                  ),
+            ),
+        ),
       ),
 
                  ),
@@ -658,13 +697,13 @@ BoxDecoration lightBox() {
           boxShadow: [BoxShadow(
             color:Color.fromRGBO(0,0,0,0.2),
             offset: Offset(4,3),
-          blurRadius: 6.0,
+          blurRadius: 4.0,
           spreadRadius: 5.0),
           BoxShadow(
             color:Color.fromRGBO(255,255,255,0.9),
             offset: Offset(-3,-3),
-          blurRadius: 8.0,
-          spreadRadius: 3.0),],
+          blurRadius: 12.0,
+          spreadRadius: 1.0),],
           borderRadius: BorderRadius.circular(20),
         );
 }
