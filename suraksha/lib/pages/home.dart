@@ -448,7 +448,7 @@ Widget HiddenDrawer(){
             Row(
               children: <Widget>[
                 CircleAvatar(
-                  backgroundColor: Colors.tealAccent[700],
+                  backgroundColor: Colors.black,
                   radius: 40,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(35),
@@ -486,9 +486,6 @@ Widget HiddenDrawer(){
                 _customRow(
                  'Community',
                   Icons.people_outline,
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 
                 SizedBox(
