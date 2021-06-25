@@ -66,3 +66,8 @@ project. We also will also have continuous monitoring of the streets via CCTV an
 
 Let's help each other and be safe.
 
+# Architecture Diagram
+
+![Suraksha_Architecture](https://user-images.githubusercontent.com/53343483/123423064-b15b3c80-d5dc-11eb-88fa-3405ff20296a.png)
+
+
