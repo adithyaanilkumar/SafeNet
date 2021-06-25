@@ -1,40 +1,22 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-// Stores the Google Maps API Key
+
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'dart:math' show cos, sqrt, asin;
+String Google_API = "GOOGLE_API_KEY"; 
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class GMap extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Maps',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MapView(),
-    );
-  }
+  _GMapState createState() => _GMapState();
 }
 
-class MapView extends StatefulWidget {
-  @override
-  _MapViewState createState() => _MapViewState();
-}
-
-class _MapViewState extends State<MapView> {
+class _GMapState extends State<GMap> {
   CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
   late GoogleMapController mapController;
-  //Completer<GoogleMapController> _controller = Completer();
+
   late Position _currentPosition;
   String _currentAddress = '';
 
@@ -50,8 +32,7 @@ class _MapViewState extends State<MapView> {
 
   Set<Marker> markers = {};
 
-  //late PolylinePoints polylinePoints;
-  PolylinePoints polylinePoints = PolylinePoints();
+  late PolylinePoints polylinePoints;
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
 
@@ -294,9 +275,9 @@ class _MapViewState extends State<MapView> {
     double destinationLatitude,
     double destinationLongitude,
   ) async {
-   // polylinePoints = PolylinePoints();
+    polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      "AIzaSyDmxafrl10im8gbfjkQJsOkU-n93N7fDaQ", // Google Maps API Key
+      Google_API, // Google Maps API Key
       PointLatLng(startLatitude, startLongitude),
       PointLatLng(destinationLatitude, destinationLongitude),
       travelMode: TravelMode.transit,
@@ -306,18 +287,19 @@ class _MapViewState extends State<MapView> {
       result.points.forEach((PointLatLng point) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       });
-    }
-
-    setState(() {
-          PolylineId id = PolylineId("poly");
+      setState(() {
+              PolylineId id = PolylineId('poly');
     Polyline polyline = Polyline(
       polylineId: id,
-      color: Colors.black,
+      color: Colors.red,
       points: polylineCoordinates,
       width: 3,
     );
     polylines[id] = polyline;
-        });
+            });
+    }
+
+    
   }
 
   @override
@@ -346,7 +328,7 @@ class _MapViewState extends State<MapView> {
               mapType: MapType.normal,
               zoomGesturesEnabled: true,
               zoomControlsEnabled: false,
-              polylines: Set<Polyline>.of(polylines.values),
+               polylines: Set<Polyline>.of(polylines.values),
               onMapCreated: (GoogleMapController controller) {
                 mapController = controller;
               },
@@ -483,7 +465,7 @@ class _MapViewState extends State<MapView> {
                                       _placeDistance = null;
                                     });
 
-                                    await _calculateDistance().then((isCalculated) {
+                                    _calculateDistance().then((isCalculated) {
                                       if (isCalculated) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -510,7 +492,7 @@ class _MapViewState extends State<MapView> {
                                 'Show Route'.toUpperCase(),
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 15.0,
+                                  fontSize: 20.0,
                                 ),
                               ),
                             ),

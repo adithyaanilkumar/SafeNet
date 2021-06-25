@@ -109,33 +109,36 @@ class _IntroState extends State<Intro> {
              Center(
                child: Container(
                   height: 40.0,
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                        context, CupertinoPageRoute(builder: (context) => SignPhone()));
-                      },
-                      child: Container(
-                            width: 200,
-                            decoration:  BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.tealAccent[400]
-                            ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                    Center(
-                                        child: Text(
-                                          "Join Now",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w700,
-                                            ),
-                                        ),
-                                    )
-                                ],
-                            ),
-                      ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                          context, CupertinoPageRoute(builder: (context) => SignPhone()));
+                        },
+                        child: Container(
+                              width: 200,
+                              decoration:  BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.tealAccent[400]
+                              ),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                      Center(
+                                          child: Text(
+                                            "Join Now",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                              ),
+                                          ),
+                                      )
+                                  ],
+                              ),
+                        ),
+                    ),
                   ),
 
                             ),
