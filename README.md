@@ -70,4 +70,9 @@ Let's help each other and be safe.
 
 ![Suraksha_Architecture](https://user-images.githubusercontent.com/53343483/123423064-b15b3c80-d5dc-11eb-88fa-3405ff20296a.png)
 
+# Database Diagram
+
+![safenet Database diagram](https://user-images.githubusercontent.com/53343483/182040054-449cddf3-478d-4323-998e-bb0ae60b0986.png)
+
+
 
