@@ -1,11 +1,11 @@
-# Code for my blog post - [How to build your own Uber-for-X App](https://medium.freecodecamp.com/how-to-build-your-own-uber-for-x-app-33237955e253#.hhddn3s2m)
 
-### How to install:
+
+### Steps to run:
 
 - Clone or fork this repo
 - Install NodeJS and MongoDB
 - Run `sudo npm install`
-- run `mongoimport --db myUberApp --collection policeData --drop --file ./cops.json` to import sample cop information in MongoDB
+- run `mongoimport --db myUberApp --collection policeData --drop --file ./cops.json` to import sample volunteer information in MongoDB
 - run `mongoimport --db myUberApp --collection requestsData --drop --file ./crime-data.json` to import sample crime information in MongoDB
 
 ### How to run: 
