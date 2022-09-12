@@ -1,10 +1,10 @@
 var http = require("http");
 var express = require("express");
-var consolidate = require("consolidate"); //1
+var consolidate = require("consolidate"); 
 var _ = require("underscore");
 var bodyParser = require('body-parser');
 
-var routes = require('./routes'); //File that contains our endpoints
+var routes = require('./routes'); 
 var mongoClient = require("mongodb").MongoClient;
 
 var app = express();
@@ -16,22 +16,22 @@ app.use(bodyParser.json({
     limit: '5mb'
 }));
 
-app.set('views', 'views'); //Set the folder-name from where you serve the html page. 
-app.use(express.static('./public')); //setting the folder name (public) where all the static files like css, js, images etc are made available
+app.set('views', 'views'); 
+app.use(express.static('./public')); 
 
 app.set('view engine', 'html');
-app.engine('html', consolidate.underscore); //Use underscore to parse templates when we do res.render
+app.engine('html', consolidate.underscore); 
 
 var server = http.Server(app);
-var portNumber = 8000; //for locahost:8000
+var portNumber = 8000; 
 
-var io = require('socket.io')(server); //Creating a new socket.io instance by passing the HTTP server object
+var io = require('socket.io')(server); 
 
-server.listen(portNumber, function() { //Runs the server on port 8000
+server.listen(portNumber, function() {
     console.log('Server listening at port ' + portNumber);
 
-    var url = ''; //Db name
-    mongoClient.connect(url, function(err, db) { //a connection with the mongodb is established here.
+    var url = ''; 
+    mongoClient.connect(url, function(err, db) { 
         if(err)
         {
             console.log("unable to connect to db");
@@ -51,8 +51,7 @@ server.listen(portNumber, function() { //Runs the server on port 8000
         //         console.log(results)
         //     }
         // });
-        app.get('/citizen.html', function(req, res) { //a request to /citizen.html will render our citizen.html page
-            //Substitute the variable userId in citizen.html with the userId value extracted from query params of the request.
+        app.get('/citizen.html', function(req, res) { 
             res.render('citizen.html', {
                 userId: req.query.userId
             });
@@ -71,18 +70,16 @@ server.listen(portNumber, function() { //Runs the server on port 8000
             res.json('hello');
         });
 
-        io.on('connection', function(socket) { //Listen on the 'connection' event for incoming sockets
+        io.on('connection', function(socket) { 
             console.log('A user just connected');
 
-            socket.on('join', function(data) { //Listen to any join event from connected users
-                socket.join(data.userId); //User joins a unique room/channel that's named after the userId 
+            socket.on('join', function(data) { 
+                socket.join(data.userId); 
                 console.log("User joined room: " + data.userId);
             });
 
-            routes.initialize(app, db, socket, io); //Pass socket and io objects that we could use at different parts of our app
+            routes.initialize(app, db, socket, io); 
         });
     });
 });
 
-/* 1. Not all the template engines work uniformly with express, hence this library in js, (consolidate), is used to make the template engines work uniformly. Altough it doesn't have any 
-modules of its own and any template engine to be used should be seprately installed!*/
