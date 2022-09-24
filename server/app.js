@@ -31,8 +31,6 @@ var io = require('socket.io')(server);
 
 server.listen(portNumber, function() {
     console.log('Server listening at port ' + portNumber);
-
-    console.log(secrets.monogURL);
     var url = secrets.monogURL; //Db connection URL
     mongoClient.connect(url, function(err, db) { //a connection with the mongodb is established here.
 

@@ -291,7 +291,7 @@ export default function Header(props) {
               color="primary"
               href="https://flatlogic.com"
             >
-              Flalogic.com
+              SafeNet.com
             </Typography>
           </div>
           <MenuItem
