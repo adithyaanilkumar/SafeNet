@@ -25,7 +25,7 @@ var routes = <String, WidgetBuilder>{
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
- Firebase.initializeApp();
+ //Firebase.initializeApp();
  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(new MyApp());
   }

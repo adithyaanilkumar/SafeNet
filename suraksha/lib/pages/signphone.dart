@@ -250,100 +250,100 @@ class _SignPhoneState extends State<SignPhone> {
                         height: ht * 0.06,
                         child: Material(
                           color: Colors.transparent,
-                          child: InkWell(
-                              onTap: isOTPScreen?() async{
-                                 try {
-                                      await _auth
-                                          .signInWithCredential(
-                                              PhoneAuthProvider.credential(
-                                                  verificationId:
-                                                      verificationCode,
-                                                  smsCode: otp))
-                                          .then((user) async => {
-                                                //sign in was success
-                                                if (user != null)
-                                                  {
-                                                    //store registration details in firestore database
-                                                    await _firestore
-                                                        .collection('users')
-                                                        .doc(
-                                                            _auth.currentUser!.uid)
-                                                        .set(
-                                                            {
+                          // child: InkWell(
+                          //     onTap: isOTPScreen?() async{
+                          //        try {
+                          //             await _auth
+                          //                 .signInWithCredential(
+                          //                     PhoneAuthProvider.credential(
+                          //                         verificationId:
+                          //                             verificationCode,
+                          //                         smsCode: otp))
+                          //                 .then((user) async => {
+                          //                       //sign in was success
+                          //                       if (user != null)
+                          //                         {
+                          //                           //store registration details in firestore database
+                          //                           await _firestore
+                          //                               .collection('users')
+                          //                               .doc(
+                          //                                   _auth.currentUser!.uid)
+                          //                               .set(
+                          //                                   {
                                                           
-                                                          'phonenumber':phoneno,
+                          //                                 'phonenumber':phoneno,
                                                               
-                                                        },
-                                                            SetOptions(
-                                                                merge:
-                                                                    true)).then(
-                                                            (value) => {
-                                                                  //then move to authorised area
-                                                                  setState(() {
-                                                                    isLoading =
-                                                                        false;
-                                                                    isResend =
-                                                                        false;
-                                                                  })
-                                                                }),
+                          //                               },
+                          //                                   SetOptions(
+                          //                                       merge:
+                          //                                           true)).then(
+                          //                                   (value) => {
+                          //                                         //then move to authorised area
+                          //                                         setState(() {
+                          //                                           isLoading =
+                          //                                               false;
+                          //                                           isResend =
+                          //                                               false;
+                          //                                         })
+                          //                                       }),
 
-                                                    setState(() {
-                                                      isLoading = false;
-                                                      isResend = false;
-                                                    }),
-                                                    Navigator.pushAndRemoveUntil(
-                                                      context,
-                                                      CupertinoPageRoute(builder: (context)=> MDetails()),
-                                                      (route) => false,
-                                                    )
-                                                  }
-                                              })
-                                          // ignore: return_of_invalid_type_from_catch_error
-                                          .catchError((error) => {
-                                                setState(() {
-                                                  isLoading = false;
-                                                  isResend = true;
-                                                }),
-                                              });
-                                      setState(() {
-                                        isLoading = true;
-                                      });
-                                    } catch (e) {
-                                      setState(() {
-                                        isLoading = false;
-                                      });
-                                    }
+                          //                           setState(() {
+                          //                             isLoading = false;
+                          //                             isResend = false;
+                          //                           }),
+                          //                           Navigator.pushAndRemoveUntil(
+                          //                             context,
+                          //                             CupertinoPageRoute(builder: (context)=> MDetails()),
+                          //                             (route) => false,
+                          //                           )
+                          //                         }
+                          //                     })
+                          //                 // ignore: return_of_invalid_type_from_catch_error
+                          //                 .catchError((error) => {
+                          //                       setState(() {
+                          //                         isLoading = false;
+                          //                         isResend = true;
+                          //                       }),
+                          //                     });
+                          //             setState(() {
+                          //               isLoading = true;
+                          //             });
+                          //           } catch (e) {
+                          //             setState(() {
+                          //               isLoading = false;
+                          //             });
+                          //           }
 
-                              } : (){ 
-                                setState(() {
-                                    verifySign();
-                                    isRegister = false;
-                                    isOTPScreen =true;
-                                                  });},
+                          //     } : (){ 
+                          //       setState(() {
+                          //           verifySign();
+                          //           isRegister = false;
+                          //           isOTPScreen =true;
+                          //                         });},
                                 
-                              child: Container(
-                                    width: wid*0.2,
-                                    decoration:  BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.indigo[700],
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                            Center(
-                                                child: Text(
-                                                  text,
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.white,
-                                                        fontSize: 16,
-                                                        fontWeight: FontWeight.w500,
-                                                    ),
-                                                ),
-                                            )
-                                        ],
-                                    ),
-                              ),
-                          ),
+                          //     child: Container(
+                          //           width: wid*0.2,
+                          //           decoration:  BoxDecoration(
+                          //             borderRadius: BorderRadius.circular(20),
+                          //             color: Colors.indigo[700],
+                          //           ),
+                          //           child: Row(
+                          //               mainAxisAlignment: MainAxisAlignment.center,
+                          //               children: <Widget>[
+                          //                   Center(
+                          //                       child: Text(
+                          //                         text,
+                          //                           style: GoogleFonts.poppins(
+                          //                               color: Colors.white,
+                          //                               fontSize: 16,
+                          //                               fontWeight: FontWeight.w500,
+                          //                           ),
+                          //                       ),
+                          //                   )
+                          //               ],
+                          //           ),
+                          //     ),
+                          // ),
                         ),
 
                                   ),
@@ -355,73 +355,73 @@ class _SignPhoneState extends State<SignPhone> {
     setState(() {
       isLoading = true;
     });
-    debugPrint('test 1');
-    var phoneNumber = '+91 ' + phoneno;
-    debugPrint('test 2');
-    var verifyPhoneNumber = _auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (phoneAuthCredential) {
-        debugPrint('test 3');
-        //auto code complete (not manually)
-        _auth.signInWithCredential(phoneAuthCredential).then((user) async => {
-              if (user != null)
-                {
-                  //store registration details in firestore database
-                  await _firestore
-                      .collection('users')
-                      .doc(_auth.currentUser!.uid)
-                      .set({
+    // debugPrint('test 1');
+    // var phoneNumber = '+91 ' + phoneno;
+    // debugPrint('test 2');
+    // var verifyPhoneNumber = _auth.verifyPhoneNumber(
+    //   phoneNumber: phoneNumber,
+    //   verificationCompleted: (phoneAuthCredential) {
+    //     debugPrint('test 3');
+    //     //auto code complete (not manually)
+    //     _auth.signInWithCredential(phoneAuthCredential).then((user) async => {
+    //           if (user != null)
+    //             {
+    //               //store registration details in firestore database
+    //               await _firestore
+    //                   .collection('users')
+    //                   .doc(_auth.currentUser!.uid)
+    //                   .set({
                         
-                        'phone number': phoneno,
-                      }, SetOptions(merge: true))
-                      .then((value) => {
-                            //then move to authorised area
-                            setState(() {
-                              isLoading = false;
-                              isRegister = false;
-                              isOTPScreen = false;
+    //                     'phone number': phoneno,
+    //                   }, SetOptions(merge: true))
+    //                   .then((value) => {
+    //                         //then move to authorised area
+    //                         setState(() {
+    //                           isLoading = false;
+    //                           isRegister = false;
+    //                           isOTPScreen = false;
 
-                              //navigate to is
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                CupertinoPageRoute(builder: (context)=> Home()),
-                                (route) => false,
-                              );
-                            })
-                          })
-                      .catchError((onError) => {
-                            debugPrint(
-                                'Error saving user to db.' + onError.toString())
-                          })
-                }
-            });
-        debugPrint('test 4');
-      },
-      verificationFailed: (FirebaseAuthException error) {
-        debugPrint('Error');
-        setState(() {
-          isLoading = false;
-        });
-      },
-      codeSent: (verificationId, [forceResendingToken]) {
-        debugPrint('test 6');
-        setState(() {
-          isLoading = false;
-          verificationCode = verificationId;
-        });
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        debugPrint('test 7');
-        setState(() {
-          isLoading = false;
-          verificationCode = verificationId;
-        });
-      },
-      timeout: Duration(seconds: 60),
-    );
-    debugPrint('test 7');
-    await verifyPhoneNumber;
-    debugPrint('test 8');
+    //                           //navigate to is
+    //                           Navigator.pushAndRemoveUntil(
+    //                             context,
+    //                             CupertinoPageRoute(builder: (context)=> Home()),
+    //                             (route) => false,
+    //                           );
+    //                         })
+    //                       })
+    //                   .catchError((onError) => {
+    //                         debugPrint(
+    //                             'Error saving user to db.' + onError.toString())
+    //                       })
+    //             }
+    //         });
+    //     debugPrint('test 4');
+    //   },
+    //   verificationFailed: (FirebaseAuthException error) {
+    //     debugPrint('Error');
+    //     setState(() {
+    //       isLoading = false;
+    //     });
+    //   },
+    //   codeSent: (verificationId, [forceResendingToken]) {
+    //     debugPrint('test 6');
+    //     setState(() {
+    //       isLoading = false;
+    //       verificationCode = verificationId;
+    //     });
+    //   },
+    //   codeAutoRetrievalTimeout: (String verificationId) {
+    //     debugPrint('test 7');
+    //     setState(() {
+    //       isLoading = false;
+    //       verificationCode = verificationId;
+    //     });
+    //   },
+    //   timeout: Duration(seconds: 60),
+    // );
+    // debugPrint('test 7');
+    // await verifyPhoneNumber;
+    // debugPrint('test 8');
   }
 
 

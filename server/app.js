@@ -4,7 +4,9 @@ var consolidate = require("consolidate");
 var _ = require("underscore");
 var bodyParser = require('body-parser');
 
-var routes = require('./routes'); 
+
+var routes = require('./routes'); //File that contains our endpoints
+var secrets = require('./secrets');
 var mongoClient = require("mongodb").MongoClient;
 
 var app = express();
@@ -30,8 +32,10 @@ var io = require('socket.io')(server);
 server.listen(portNumber, function() {
     console.log('Server listening at port ' + portNumber);
 
-    var url = ''; 
-    mongoClient.connect(url, function(err, db) { 
+    console.log(secrets.monogURL);
+    var url = secrets.monogURL; //Db connection URL
+    mongoClient.connect(url, function(err, db) { //a connection with the mongodb is established here.
+
         if(err)
         {
             console.log("unable to connect to db");

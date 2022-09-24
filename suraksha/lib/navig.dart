@@ -36,7 +36,7 @@ class _NavigState extends State<Navig> {
        bottomNavigationBar: CurvedNavigationBar(
          
          height: 60,
-          backgroundColor: Colors.blue[50],
+          backgroundColor: (Colors.blue[50])!,
            color: Colors.black87,
           buttonBackgroundColor: Colors.black,
         //  key: _bottomNavigationKey,

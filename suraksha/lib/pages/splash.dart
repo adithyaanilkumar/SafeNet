@@ -21,30 +21,30 @@ class _SplashPageState extends State<SplashPage> {
 
   initialiseFirebase() async {
     try{
-    await  Firebase.initializeApp();
- //   await FirebaseAuth.instance.currentUser;
-    if (widget.refreshCache != null && widget.refreshCache == true) {
-        await FirebaseFirestore.instance.terminate();
-        await FirebaseFirestore.instance.clearPersistence();
-      }
-     User? user = FirebaseAuth.instance
-            .currentUser;
+//     await  Firebase.initializeApp();
+//  //   await FirebaseAuth.instance.currentUser;
+//     if (widget.refreshCache != null && widget.refreshCache == true) {
+//         await FirebaseFirestore.instance.terminate();
+//         await FirebaseFirestore.instance.clearPersistence();
+//       }
+//      User? user = FirebaseAuth.instance
+//             .currentUser;
             
-              if(user == null){
-                Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => Intro()));
-              } 
-              else{
+//               if(user == null){
+        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => Intro()));
+              // } 
+              // else{
             
-                    DocumentSnapshot result =  await FirebaseFirestore.instance
-                                      .collection('users')
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .get();
-                    if(result.exists){
-                      return result.data();
-                    }
-                    else
-                      return null;
-                    }
+              //       DocumentSnapshot result =  await FirebaseFirestore.instance
+              //                         .collection('users')
+              //                         .doc(FirebaseAuth.instance.currentUser!.uid)
+              //                         .get();
+              //       if(result.exists){
+              //         return result.data();
+              //       }
+              //       else
+              //         return null;
+              //       }
     }
     catch(err){
       print(err);
@@ -67,29 +67,30 @@ class _SplashPageState extends State<SplashPage> {
          future: initialisefb,
          // ignore: missing_return
          builder: (context,snapshot){
-           if(snapshot.hasData){
-             if(FirebaseAuth.instance.currentUser == null )
-                  {
-                    return Login();
-                    }
+          //  if(snapshot.hasData){
+          //    if(FirebaseAuth.instance.currentUser == null )
+          //         {
+          //           return Login();
+          //           }
               
-                else if(snapshot.data != null){
-                  return Home(userData: snapshot.data); 
-                }  
-                else {
-                  return Intro();
-                }  
-           }       
-           else{
-             return Container(
-               color: Colors.black,
-               child: Center(child: Material(child: CircularProgressIndicator(
-                 backgroundColor: Colors.redAccent,
-                 valueColor: AlwaysStoppedAnimation(Colors.green),
-                 strokeWidth: 10,
-               )),),
-             );
-           }
+          //       else if(snapshot.data != null){
+          //         return Home(userData: {}); 
+          //       }  
+          //       // else {
+          //       //   return Intro();
+          //       // }  
+          //  }       
+          //  else{
+          //    return Container(
+          //      color: Colors.black,
+          //      child: Center(child: Material(child: CircularProgressIndicator(
+          //        backgroundColor: Colors.redAccent,
+          //        valueColor: AlwaysStoppedAnimation(Colors.green),
+          //        strokeWidth: 10,
+          //      )),),
+          //    );
+          //  }
+          return Home(userData: {});
          },
         ),
       ),

@@ -76,27 +76,29 @@ class _LoginState extends State<Login> {
                     child: Text("Login"),
                   
                     onPressed: () {
-                      if (_loginFormKey.currentState!.validate()) {
-                        FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                                email: emailInputController.text,
-                                password: pwdInputController.text)
-                            .then((currentUser) => FirebaseFirestore.instance
-                                .collection("users")
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
-                                .get()
-                                .then((DocumentSnapshot result) =>
+                      // if (_loginFormKey.currentState!.validate()) {
+                      //   FirebaseAuth.instance
+                      //       .signInWithEmailAndPassword(
+                      //           email: emailInputController.text,
+                      //           password: pwdInputController.text)
+                      //       .then((currentUser) => FirebaseFirestore.instance
+                      //           .collection("users")
+                      //           .doc(FirebaseAuth.instance.currentUser!.uid)
+                      //           .get()
+                      //           .then((DocumentSnapshot result) =>
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => Home(
                                                 
-                                                  userData: result.data(),
-                                                ))))
-                                .catchError((err) => print(err)))
-                            .catchError((err) => print(err));
-                      }
-                    },
+                                                  //userData: result.data(),
+                                                  userData: {},
+                                                )));
+                    //                             )
+                    //             .catchError((err) => print(err)))
+                    //         .catchError((err) => print(err));
+                    //   }
+                     },
                   ),
                   Text("Don't have an account yet?"),
                   TextButton(
