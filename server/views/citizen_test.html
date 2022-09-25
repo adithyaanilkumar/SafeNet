@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Citizen
+        <%= userId %>
+    </title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+</head>
+
+<body data-userId="<%= userId %>">
+    <style>
+        .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+        }
+    </style>
+    <h1>Hello Citizen
+        <%= userId %>
+    </h1>
+
+
+    <h4 id="notification"></h4>
+    <button onclick="requestForHelp()">
+        Request for help
+    </button>
+
+    <div id='map' style='width: 1000px; height: 800px;'></div>
+    <pre id="coordinates" class="coordinates"></pre>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   
+
+    <script type="text/javascript">
+        var socket = io();
+
+        var userId = document.body.getAttribute("data-userId");
+        socket.emit('join', {
+            userId: userId
+        }); //Join a room, roomname is the userId itself!
+
+        //Empty variables to store information. This will get filled later
+        var requestDetails = {};
+        var copDetails = {};
+        requestDetails = {
+            citizenId: userId,
+            location: {
+                address: "Model Engineering College,Edapally, Kanayannur 682021, Kerala Edapally Kanayannur India",
+                latitude: 10.028425,
+                longitude: 76.328584
+            }
+        }
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdGh5YTUwMjYiLCJhIjoiY2w1Yjh1ODU1MDU2dTNjczA4cXp5YTAzbyJ9.bSb3b5Wk5FMTY_bbedzX0w';
+        //Load the map and set it to a given lat-lng
+        //map = L.mapbox.map('map');
+        //map.setView([12.9718915, 77.64115449999997], 15).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));;
+        const coordinates = document.getElementById('coordinates');
+        const map = new mapboxgl.Map({
+            container: 'map',
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [76.328584, 10.028425],
+            zoom: 15
+        });
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = `url(https://media-exp1.licdn.com/dms/image/C5603AQFAran0IJzZ5Q/profile-displayphoto-shrink_800_800/0/1607941076269?e=1669852800&v=beta&t=rLgbh1hws8DlfykBE-2F5oQ4Snj6pe34bxl4bPSJhwY)`;
+        el.style.width = `70px`;
+        el.style.height = `70px`;
+        el.style.borderRadius = `50%`;
+        el.style.backgroundSize = '100%';
+        const marker = new mapboxgl.Marker({
+            draggable: true,
+            element: el
+        })
+            .setLngLat([76.328584, 10.028425])
+            .addTo(map);
+        //Display a default marker
+       // marker = L.marker([12.9718915, 77.64115449999997]).addTo(map);
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+            requestDetails.location = {
+                address: "hello",
+                latitude: lngLat.lat,
+                longitude: lngLat.lng
+            };
+            console.log(requestDetails)
+        }
+ 
+        marker.on('dragend', onDragEnd);
+
+        
+
+        function requestForHelp() { //When button is clicked, emit an event
+            socket.emit('request-for-help', requestDetails);
+            console.log(requestDetails)
+        }
+
+        //Listen for a 'request-accepted' event
+        socket.on('request-accepted', function(data) {
+            copDetails = data; //Save cop details
+
+            //Display Cop details
+            document.getElementById("notification").innerHTML = "A SafeNet Guardian angel is coming to your rescue! \n" + JSON.stringify(copDetails);
+            map.loadImage(
+            'https://media-exp1.licdn.com/dms/image/C4D03AQE1kqqPL0AAWg/profile-displayphoto-shrink_800_800/0/1601035760269?e=1669852800&v=beta&t=wDWhlM9tcWWsQYsp59DBwvn3Y423H8z3VViYzsO9IYg',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('custom-marker', image);
+                // Add a GeoJSON source with 2 points
+                map.addSource('points', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': [
+                            {
+                                // feature for Mapbox DC
+                                'type': 'Feature',
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [
+                                    copDetails.location.longitude, copDetails.location.latitude 
+                                    ]
+                                },
+                                
+                            }
+                        ]
+                    }
+                });
+
+                // Add a symbol layer
+                map.addLayer({
+                    'id': 'points',
+                    'type': 'symbol',
+                    'source': 'points',
+                    'layout': {
+                        'icon-image': 'custom-marker',
+                        'icon-size': 0.10,
+                        // get the title name from the source's "title" property
+                        'text-field': ['get', 'title'],
+                        'text-font': [
+                            'Open Sans Semibold',
+                            'Arial Unicode MS Bold'
+                        ],
+                        'text-offset': [0, 1.25],
+                        'text-anchor': 'top',
+                    }
+                });
+            }
+        );
+            // //Show cop location on the map
+            // marker.setLngLat([0, 0])([copDetails.location.latitude, copDetails.location.longitude], {
+            //     icon: L.icon({
+            //         iconUrl: '/images/police.png',
+            //         iconSize: [60, 28]
+            //     })
+            // }).addTo(map);
+        });
+
+        //L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpdGh5YTUwMjYiLCJhIjoiY2w1Yjh1ODU1MDU2dTNjczA4cXp5YTAzbyJ9.bSb3b5Wk5FMTY_bbedzX0w';
+    //     mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdGh5YTUwMjYiLCJhIjoiY2w1Yjh1ODU1MDU2dTNjczA4cXp5YTAzbyJ9.bSb3b5Wk5FMTY_bbedzX0w';
+    //     //Load the map and set it to a given lat-lng
+    //     //map = L.mapbox.map('map');
+    //     //map.setView([12.9718915, 77.64115449999997], 15).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));;
+    //     const coordinates = document.getElementById('coordinates');
+    //     const map = new mapboxgl.Map({
+    //         container: 'map',
+    //         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    //         style: 'mapbox://styles/mapbox/streets-v11',
+    //         center: [0, 0],
+    //         zoom: 2
+    //     });
+    //     const marker = new mapboxgl.Marker({
+    //         draggable: true
+    //     })
+    //         .setLngLat([0, 0])
+    //         .addTo(map);
+    //     //Display a default marker
+    //    // marker = L.marker([12.9718915, 77.64115449999997]).addTo(map);
+    //     function onDragEnd() {
+    //         const lngLat = marker.getLngLat();
+    //         coordinates.style.display = 'block';
+    //         coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+    //     }
+ 
+    //     marker.on('dragend', onDragEnd);
+        //Use MapBox geo-coding API
+        // map.addControl(L.mapbox.geocoderControl('mapbox.places', {
+        //     autocomplete: true,
+        // }).on('select', function(data) {
+        //     //This function runs when a place is selected
+
+        //     //data contains the geocding results
+        //     console.log(data);
+
+        //     //Do something with the results
+
+        //     //Extract address and coordinates from the results and save it
+        //     // requestDetails.location = {
+        //     //     address: data.feature["place_name"],
+        //     //     latitude: data.feature.center[1],
+        //     //     longitude: data.feature.center[0]
+        //     // };
+        //     requestDetails.location = {
+        //         address: "hello",
+        //         latitude: 12.9718915,
+        //         longitude: 77.64115449999997
+        //     };
+
+        //     //Set the marker to new location
+        //     marker.setLatLng([data.feature.center[1], data.feature.center[0]]);
+        // }));
+        
+    </script>
+</body>
+
+</html>

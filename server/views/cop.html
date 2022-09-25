@@ -6,7 +6,8 @@
     <title>Cop
         <%= userId %>
     </title>
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
 </head>
 
 <body data-userId="<%= userId %>">
@@ -21,16 +22,34 @@
     <button onclick="helpCitizen()">
         Help Citizen
     </button>
+    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 
-    <div id='map' style='width: 600px; height: 400px;'></div>
+    <div id='map' style='width: 1000px; height: 800px;'></div>
+    <pre id="coordinates" class="coordinates"></pre>
 
     <script src="/socket.io/socket.io.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+   
+    <style>
+        .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+        }
+    </style>
 
     <script type="text/javascript">
+        
         var socket = io();
 
         //Fetch userId from the data-atribute of the body tag
@@ -44,8 +63,26 @@
         //Empty variables to store information. This will get filled later
         var requestDetails = {};
         var copDetails = {};
-        var map, marker;
-
+        copDetails.location ={
+                    address: "hello",
+                    latitude: 10.028425,
+                    longitude: 76.328584
+                }
+        
+                console.log("cop details before mapbox", copDetails)
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdGh5YTUwMjYiLCJhIjoiY2w1Yjh1ODU1MDU2dTNjczA4cXp5YTAzbyJ9.bSb3b5Wk5FMTY_bbedzX0w';
+        //Load the map and set it to a given lat-lng
+        //map = L.mapbox.map('map');
+        //map.setView([12.9718915, 77.64115449999997], 15).addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));;
+        const coordinates = document.getElementById('coordinates');
+        const map = new mapboxgl.Map({
+            container: 'map',
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [copDetails.location.longitude, copDetails.location.latitude ],
+            zoom: 15
+        });
+                  
         //First send a GET request using JQuery AJAX and get the cop's details and save it
         $.ajax({
             url: '/cops/info?userId=' + userId,
@@ -58,51 +95,143 @@
                     longitude: copDetails.location.coordinates[0],
                     latitude: copDetails.location.coordinates[1]
                 }
-
+                //console.log(copDetails)
+                const el = document.createElement('div');
+        el.className = 'marker';
+        //console.log("cop details ",copDetails)
+        if(copDetails.copId == '01')
+        el.style.backgroundImage = `url(https://media-exp1.licdn.com/dms/image/C4D03AQE1kqqPL0AAWg/profile-displayphoto-shrink_800_800/0/1601035760269?e=1669852800&v=beta&t=wDWhlM9tcWWsQYsp59DBwvn3Y423H8z3VViYzsO9IYg)`;
+        else if(copDetails.copId =='02')
+        el.style.backgroundImage = `url(https://media-exp1.licdn.com/dms/image/C5603AQEk6fcp8N2PRg/profile-displayphoto-shrink_800_800/0/1594403331047?e=1669852800&v=beta&t=QkLEYRYxg5UNQSa5i1F0CLqsaXBbqyQk_LdHsFpjtWg)`;
+        else if(copDetails.copId == '03')
+        
+        el.style.backgroundImage = `url(https://user-images.githubusercontent.com/112452479/192163529-2d3245ba-8281-4ac3-94de-d2f4d0cc2027.jpg)`;
+        else if(copDetails.copId == "04")
+        el.style.backgroundImage = `url(https://media-exp1.licdn.com/dms/image/C4D03AQFoL19ZVbbkFw/profile-displayphoto-shrink_800_800/0/1601287303840?e=1669852800&v=beta&t=7drEC6vjbJ7sXxHn-P3QFNfn07gbTmePeE3jd8xeWNM)`;
+        else el.style.backgroundImage = `url(https://media-exp1.licdn.com/dms/image/C4D03AQE1kqqPL0AAWg/profile-displayphoto-shrink_800_800/0/1601035760269?e=1669852800&v=beta&t=wDWhlM9tcWWsQYsp59DBwvn3Y423H8z3VViYzsO9IYg)`;
+        el.style.width = `70px`;
+        el.style.height = `70px`;
+        el.style.borderRadius = `50%`;
+        el.style.backgroundSize = '100%';
+        const marker = new mapboxgl.Marker({
+            draggable: true,
+            element: el
+        })
+            .setLngLat([copDetails.location.longitude, copDetails.location.latitude ])
+            .addTo(map);
+        //Display a default marker
+       // marker = L.marker([12.9718915, 77.64115449999997]).addTo(map);
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+            copDetails.location.latitude = lngLat.lat
+            copDetails.location.longitude = lngLat.lng
+            console.log(copDetails.location.longitude ,copDetails.location.latitude)
+        }
+ 
+        marker.on('dragend', onDragEnd);  
                 document.getElementById("copDetails").innerHTML = JSON.stringify(data.copDetails);
+                map.flyTo({
+     center: [copDetails.location.longitude,copDetails.location.latitude],
+     zoom: 15,
+     speed: 5, 
+   });
+                //marker.setLngLat([copDetails.location.longitude, copDetails.location.latitude ])
+                
+                // L.mapbox.accessToken = '';
+                // //Load the map and set it to a cop's lat-lng
+                // map = L.mapbox.map('map', 'mapbox.streets');
+                // map.setView([copDetails.location.latitude, copDetails.location.longitude], 15);
 
-                L.mapbox.accessToken = '';
-                //Load the map and set it to a cop's lat-lng
-                map = L.mapbox.map('map', 'mapbox.streets');
-                map.setView([copDetails.location.latitude, copDetails.location.longitude], 15);
+                // //Display a default marker
+                // marker = L.marker([copDetails.location.latitude, copDetails.location.longitude]).addTo(map);
 
-                //Display a default marker
-                marker = L.marker([copDetails.location.latitude, copDetails.location.longitude]).addTo(map);
+                // //Use MapBox geo-coding API
+                // map.addControl(L.mapbox.geocoderControl('mapbox.places', {
+                //     autocomplete: true,
+                // }).on('select', function(data) {
+                //     //This function runs when a place is selected
 
-                //Use MapBox geo-coding API
-                map.addControl(L.mapbox.geocoderControl('mapbox.places', {
-                    autocomplete: true,
-                }).on('select', function(data) {
-                    //This function runs when a place is selected
+                //     //data contains the geocding results
+                //     console.log(data);
 
-                    //data contains the geocding results
-                    console.log(data);
+                //     //Do something with the results
 
-                    //Do something with the results
-
-                    //Set the marker to new location
-                    marker.setLatLng([data.feature.center[1], data.feature.center[0]]);
-                }));
+                //     //Set the marker to new location
+                //     marker.setLatLng([data.feature.center[1], data.feature.center[0]]);
+                // }));
             },
             error: function(httpRequest, status, error) {
                 console.log(error);
             }
         });
+       
 
         //Listen for a 'request-for-help' event
         socket.on('request-for-help', function(data) {
             requestDetails = data; //Save request details
-
+            console.log(map)
             //display citizen info
             document.getElementById("notification").innerHTML = "You have a new request! \n" + JSON.stringify(requestDetails);
-
+            
+            console.log("request ", requestDetails.location.latitude, requestDetails.location.longitude)
             //Show citizen location on the map
-            L.marker([requestDetails.location.latitude, requestDetails.location.longitude], {
-                icon: L.icon({
-                    iconUrl: '/images/citizen.png',
-                    iconSize: [50, 50]
-                })
-            }).addTo(map);
+            // L.marker([requestDetails.location.latitude, requestDetails.location.longitude], {
+            //     icon: L.icon({
+            //         iconUrl: '/images/citizen.png',
+            //         iconSize: [50, 50]
+            //     })
+            // }).addTo(map);
+
+            map.loadImage(
+            'https://media-exp1.licdn.com/dms/image/C5603AQFAran0IJzZ5Q/profile-displayphoto-shrink_800_800/0/1607941076269?e=1669852800&v=beta&t=rLgbh1hws8DlfykBE-2F5oQ4Snj6pe34bxl4bPSJhwY',
+            (error, image) => {
+                if (error){console.log(error)
+                     throw error};
+                map.addImage('custom-marker', image);
+                // Add a GeoJSON source with 2 points
+                map.addSource('points', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': [
+                            {
+                                // feature for Mapbox DC
+                                'type': 'Feature',
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [
+                                    requestDetails.location.longitude, requestDetails.location.latitude
+                                    ]
+                                },
+                                
+                            }
+                        ]
+                    }
+                });
+
+                // Add a symbol layer
+                map.addLayer({
+                    'id': 'points',
+                    'type': 'symbol',
+                    'source': 'points',
+                    'layout': {
+                        'icon-image': 'custom-marker',
+                        'icon-size': 0.10,
+                        // get the title name from the source's "title" property
+                        'text-field': ['get', 'title'],
+                        'text-font': [
+                            'Open Sans Semibold',
+                            'Arial Unicode MS Bold'
+                        ],
+                        'text-offset': [0, 1.25],
+                        'text-anchor': 'top',
+                    }
+                });
+            }
+        );
+            
 
         });
 

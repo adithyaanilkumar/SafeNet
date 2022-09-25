@@ -58,6 +58,11 @@ server.listen(portNumber, function() {
                 userId: req.query.userId
             });
         });
+        app.get('/citizen_test.html', function(req, res) { 
+            res.render('citizen_test.html', {
+                userId: req.query.userId
+            });
+        });
 
         app.get('/cop.html', function(req, res) {
             res.render('cop.html', {
