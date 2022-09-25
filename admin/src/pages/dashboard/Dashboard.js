@@ -25,7 +25,7 @@ import {
 // styles
 import useStyles from "./styles";
 
-import dummy_map from "../../images/MLELocation-Map.jpg" 
+// import dummy_map from "../../images/MLELocation-Map.jpg" 
 import dummy_heatmap from "../../images/heatmaps.png" 
 
 // components
@@ -36,6 +36,33 @@ import { Typography } from "../../components/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
 import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
+
+// import Map from './heatmap';
+
+import {
+  withGoogleMap,
+  withScriptjs,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
+
+const BasicMap = withScriptjs(
+  withGoogleMap(() => (
+    <GoogleMap
+      defaultZoom={12}
+      defaultCenter={{
+        lat: parseFloat(9.92),
+        lng: parseFloat(76.275),
+      }}
+      position={{ lat: 9.92, lng: 76.275 }}
+    >
+      <Marker position={{ lat: 9.92, lng: 76.275 }} />
+      <Marker position={{ lat: 9.95, lng: 76.3 }} />
+      <Marker position={{ lat: 9.97, lng: 76.29 }} />
+
+    </GoogleMap>
+  )),
+);
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -275,8 +302,20 @@ export default function Dashboard(props) {
               </div>
             }
           >
-          <img src={dummy_map} alt="map" width="45%" style={{marginRight:"5%"}}></img>
-          <img src={dummy_heatmap} alt="heatmap" width="50%"></img>
+
+            <div className={classes.mapContainer} style={{ overflow:"hidden", margin:0, padding:0, width:"100%", height:"70vh" }}>
+            <BasicMap
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg"
+              loadingElement={<div style={{ height: "inherit", width: "inherit" }} />}
+              containerElement={<div style={{ height: "100%" }} />}
+              mapElement={<div style={{ height: "100%" }} />}
+            />
+          </div>
+          {/* <div className={classes.mapContainer}> */}
+          {/* <Map google={window.google} center={{ lat: 37.775, lng: -122.434 }} zoom={14} positions={data} style={{width:"20vw", height:"40vh"}}/> */}
+          {/* </div> */}
+          {/* <img src={dummy_map} alt="map" width="45%" style={{marginRight:"5%"}}></img> */}
+          {/* <img src={dummy_heatmap} alt="heatmap" width="50%"></img> */}
           </Widget>
         </Grid>
 

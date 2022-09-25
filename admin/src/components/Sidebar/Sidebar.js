@@ -52,7 +52,7 @@ const structure = [
     children: [
       // { label: "Icons", link: "/app/ui/icons" },
       // { label: "Charts", link: "/app/ui/charts" },
-      { label: "Heat Map", link: "/app/ui/maps" },
+      { label: "Heat Map", link: "/app/ui/heatmaps" },
       { label: "Help Requests", link: "/app/ui/maps" },
     ],
   },
