@@ -1,0 +1,8 @@
+Flask==2.2.2
+numpy==1.23.2
+python-dotenv==0.21.0
+opencv-python==4.6.0.66
+supabase==1.0.2 
+open-clip-torch==2.20.0
+Pillow
+torch
