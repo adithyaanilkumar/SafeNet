@@ -1,0 +1,53 @@
+{
+    "anomalies": [
+      {
+        "month": "Jan",
+        "amount": 10000
+      },
+      {
+        "month": "Feb",
+        "amount": 20000
+      },
+      {
+        "month": "Mar",
+        "amount": 15000
+      },
+      {
+        "month": "Apr",
+        "amount": 25000
+      },
+      {
+        "month": "May",
+        "amount": 22000
+      },
+      {
+        "month": "Jun",
+        "amount": 30000
+      },
+      {
+        "month": "Jul",
+        "amount": 28000
+      },
+      {
+        "month": "Aug",
+        "amount": 35000
+      },
+      {
+        "month": "Sep",
+        "amount": 33000
+      },
+      {
+        "month": "Oct",
+        "amount": 20000
+      },
+      {
+        "month": "Nov",
+        "amount": 30000
+      },
+      {
+        "month": "Dec",
+        "amount": 35000
+      }
+    ]
+  }
+  
