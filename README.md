@@ -63,7 +63,7 @@ Let's help each other and be safe.
 
 ## Anomaly Detection Framework
 
-INSERT LINK HERE
+![Anomaly Detection Framework](https://raw.githubusercontent.com/adithyaanilkumar/SafeNet/master/img31.jpg)
 
 # Database Architecture
 
@@ -73,4 +73,4 @@ INSERT LINK HERE
 
 ## Anomaly Detection Framework Database Architecture
 
-INSERT LINK HERE
+![App Database Architecture](https://raw.githubusercontent.com/adithyaanilkumar/SafeNet/master/img45.jpg)
